@@ -39,10 +39,16 @@ export default function Hero() {
 
           {/* Imagen/Avatar */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative w-80 h-80">
-              {/* Placeholder para tu foto */}
-              <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-6xl font-bold">TN</span>
+            <div className="relative">
+              {/* Foto profesional */}
+              <div className="w-80 h-80 rounded-full overflow-hidden shadow-lg">
+                <Image
+                  src="/imagenes/personal/p3.jpg"
+                  alt="Matías - Desarrollador Full Stack"
+                  width={320}
+                  height={320}
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               {/* Decoración */}

@@ -142,9 +142,7 @@ Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
 
 ## 📞 Contacto
 
-- **Email**: tu-email@ejemplo.com
-- **LinkedIn**: [tu-perfil](https://linkedin.com/in/tu-perfil)
-- **GitHub**: [tu-usuario](https://github.com/tu-usuario)
+- **Email**: vaglimatias@gmail.com
 
 ---
 

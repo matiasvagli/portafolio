@@ -34,15 +34,23 @@ export default function SistemaVentasPage() {
         </div>
       </section>
 
-      {/* Imagen Principal */}
-      <section className="py-12 bg-white">
+      {/* Diagrama de Flujo */}
+      <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative h-96 bg-gray-200 rounded-2xl overflow-hidden">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Arquitectura del Sistema
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Diagrama de flujo que muestra la estructura y el flujo de datos del sistema de gestión
+            </p>
+          </div>
+          <div className="relative h-[500px] bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg">
             <Image
-              src="/imagenes/webapp/centralhuevos.png"
-              alt="Dashboard principal del sistema de ventas"
+              src="/imagenes/webapp/diagram.png"
+              alt="Diagrama de flujo del sistema de ventas"
               fill
-              className="object-contain"
+              className="object-contain p-4"
             />
           </div>
         </div>
@@ -86,6 +94,11 @@ export default function SistemaVentasPage() {
                   clara que permite a los usuarios acceder rápidamente a la 
                   información que necesitan sin intervención manual en los cálculos y 
                    <strong> garantizando continuidad operativa</strong> en todo momento.
+                </p>
+                <p>
+                  <strong>Desarrollo técnico:</strong> Implementado con SQLite para prototipado 
+                  rápido y desarrollo ágil, con arquitectura preparada para migración sencilla 
+                  a PostgreSQL cuando se requiera escalabilidad en producción.
                 </p>
               </div>
             </div>
@@ -163,7 +176,7 @@ export default function SistemaVentasPage() {
             Tecnologías Utilizadas
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {["Django", "Python", "PostgreSQL", "HTML", "CSS", "JavaScript"].map((tech) => (
+            {["Django", "Python", "SQLite", "HTML", "CSS", "JavaScript"].map((tech) => (
               <div key={tech} className="text-center">
                 <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl font-bold text-gray-600">{tech[0]}</span>
@@ -190,12 +203,12 @@ export default function SistemaVentasPage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Dashboard Principal</h3>
                 <p className="text-gray-600">Vista general del sistema con métricas principales</p>
               </div>
-              <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden border">
+              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src="/imagenes/webapp/panel.png"
                   alt="Dashboard Principal"
                   fill
-                  className="object-contain"
+                  className="object-contain p-4"
                 />
               </div>
             </div>
@@ -206,12 +219,12 @@ export default function SistemaVentasPage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Gestión de Productos</h3>
                 <p className="text-gray-600">Interfaz de inventario y control de stock editable con impresión</p>
               </div>
-              <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden border">
+              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src="/imagenes/webapp/precios.png"
                   alt="Gestión de Productos"
                   fill
-                  className="object-contain"
+                  className="object-contain p-4"
                 />
               </div>
             </div>
@@ -224,12 +237,12 @@ export default function SistemaVentasPage() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Gastos</h3>
                   <p className="text-gray-600 text-sm">Ingreso de gastos y desperdicios</p>
                 </div>
-                <div className="relative h-64 bg-gray-100 rounded-lg overflow-hidden border">
+                <div className="relative h-80 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                   <Image
                     src="/imagenes/webapp/gastos.png"
                     alt="Reportes y Estadísticas"
                     fill
-                    className="object-contain"
+                    className="object-contain p-3"
                   />
                 </div>
               </div>
@@ -240,12 +253,12 @@ export default function SistemaVentasPage() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Control de Ventas</h3>
                   <p className="text-gray-600 text-sm">Ingreso de ticket de venta</p>
                 </div>
-                <div className="relative h-64 bg-gray-100 rounded-lg overflow-hidden border">
+                <div className="relative h-80 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                   <Image
                     src="/imagenes/webapp/ventas.png"
                     alt="Control de Ventas"
                     fill
-                    className="object-contain"
+                    className="object-contain p-3"
                   />
                 </div>
               </div>
@@ -264,12 +277,12 @@ export default function SistemaVentasPage() {
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Sistema de Login</h3>
                   <p className="text-gray-600">Autenticación para métricas privadas</p>
                 </div>
-                <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden border">
+                <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                   <Image
                     src="/imagenes/webapp/login.png"
                     alt="Sistema de Login"
                     fill
-                    className="object-contain"
+                    className="object-contain p-4"
                   />
                 </div>
               </div>
@@ -280,12 +293,12 @@ export default function SistemaVentasPage() {
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Gestión de Empleados</h3>
                   <p className="text-gray-600">Control de empleados , métricas de negocio</p>
                 </div>
-                <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden border">
+                <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                   <Image
                     src="/imagenes/webapp/panelprivado.png"
                     alt="Gestión de Empleados"
                     fill
-                    className="object-contain"
+                    className="object-contain p-4"
                   />
                 </div>
               </div>
@@ -296,16 +309,15 @@ export default function SistemaVentasPage() {
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Reporte de empleados</h3>
                   <p className="text-gray-600">Ingreso de empleados, datos personales</p>
                 </div>
-                <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden border">
+                <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                   <Image
                     src="/imagenes/webapp/empleados3.png"
                     alt="Reporte de empleados"
                     fill
-                    className="object-contain transform scale-x-90 scale-y-160"
+                    className="object-contain p-4"
                   />
                 </div>
               </div>
-
 
               {/* Screenshot 8 - Reportes Avanzados */}
               <div className="bg-white rounded-xl shadow-lg p-6">
@@ -313,12 +325,12 @@ export default function SistemaVentasPage() {
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Pago de sueldos y aguinaldos</h3>
                   <p className="text-gray-600">Pagos de haberes con exportación a CSV</p>
                 </div>
-                <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden border">
+                <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                   <Image
                     src="/imagenes/webapp/sueldos.png"
                     alt="Pago de sueldos y aguinaldos"
                     fill
-                    className="object-contain"
+                    className="object-contain p-4"
                   />
                 </div>
               </div>
@@ -330,12 +342,12 @@ export default function SistemaVentasPage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Resumen Ganancias</h3>
                 <p className="text-gray-600">Vista de ganancias totales , búsqueda dia semana, año , exportables a CSV</p>
               </div>
-              <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden border">
+              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src="/imagenes/webapp/resumen2.png"
                   alt="Resumen Ganancias"
                   fill
-                  className="object-contain transform scale-x-110 scale-y-100"
+                  className="object-contain p-4"
                 />
               </div>
             </div>
@@ -375,7 +387,7 @@ export default function SistemaVentasPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#"
+              href="https://github.com/matiasvagli/GestionNegocio.git"
               className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium"
             >
               Ver Código en GitHub

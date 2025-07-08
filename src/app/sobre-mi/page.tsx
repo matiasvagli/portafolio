@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Sobre mí - Matías ',
@@ -33,34 +34,34 @@ export default function SobreMi() {
               </h2>
               <div className="prose prose-lg text-gray-700">
                 <p className="mb-4">
-                  Mi historia con la tecnología comenzó en 1998, cuando tenía 14 años. 
-                  Mi padre trabajaba con sistemas Unix haciendo data entry, y me fascinó 
-                  ver cómo funcionaban esas computadoras tan diferentes a todo lo que conocía.
+                  Mi historia con la tecnología comenzó en 1998, cuando tenía 14 años. Mi padre trabajaba con sistemas Unix haciendo data entry, y me fascinaba ver cómo funcionaban esas computadoras tan distintas a todo lo que conocía.
                 </p>
                 <p className="mb-4">
-                  Al año siguiente recibí mi primera PC, y con ella, mi destino cambió. 
-                  No contento con Windows 3.11, me lancé a instalar Linux - en una época 
-                  sin internet casero, solo con "La Biblia" como guía. Ahí aprendí mis 
-                  primeros pasos en C y escribí mi primer "Hola Mundo".
+                  Al año siguiente recibí mi primera PC, y con ella mi destino cambió. No contento con Windows 3.11, me lancé a instalar Linux —en una época sin internet en casa, solo con “La Biblia”, un libro de más de 500 páginas que servía como guía para los usuarios de Linux—. Ahí di mis primeros pasos en C, compilé mis primeros kernels y escribí mi primer "Hola Mundo".
                 </p>
                 <p className="mb-4">
-                  Los primeros años de internet me llevaron a trabajar en un ciber, 
-                  administrando redes y explorando Python. Aunque la vida me llevó por 
-                  otros caminos, nunca abandoné mi pasión por la tecnología.
+                  Por entonces, los domingos solía recorrer la feria del Parque Rivadavia, el principal punto de encuentro donde se compartía información, se compraban libros y revistas de computación, y se intercambiaban experiencias que hoy encontramos fácilmente online.
+                </p>
+                <p className="mb-4">
+                  Los primeros años de internet me llevaron a trabajar en un ciber, administrando redes y explorando Python. Aunque la vida me llevó por otros caminos, nunca abandoné mi pasión por la tecnología.
                 </p>
                 <p>
-                  Hace 2 años decidí que era el momento de hacer lo que realmente me apasiona. 
-                  A los 41 años, regresé al desarrollo con la madurez y experiencia que solo 
-                  dan los años, especializándome en backend, análisis de datos y blockchain.
+                  Hoy, con 41 años, decidí enfocarme plenamente en lo que realmente me apasiona: el desarrollo, especializándome en backend, análisis de datos y blockchain, con la madurez y experiencia que solo dan los años.
                 </p>
               </div>
             </div>
             
             <div className="flex justify-center">
               <div className="relative">
-                {/* Placeholder para tu foto profesional */}
-                <div className="w-80 h-80 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center">
-                  <span className="text-white text-4xl font-bold">Foto</span>
+                {/* Foto profesional */}
+                <div className="w-80 h-80 rounded-full overflow-hidden shadow-lg">
+                  <Image
+                    src="/imagenes/personal/p3.jpg"
+                    alt="Matías - Desarrollador Full Stack"
+                    width={320}
+                    height={320}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 
                 {/* Decoración */}
@@ -80,51 +81,53 @@ export default function SobreMi() {
           </h2>
           
           <div className="space-y-8">
-            {/* Experiencia 1 */}
+            {/* Experiencia negocio propio */}
             <div className="bg-white rounded-xl p-6 shadow-lg">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Desarrollador Full Stack
-                  </h3>
-                  <p className="text-blue-600 font-medium">Empresa ABC</p>
+                  <h3 className="text-xl font-bold text-gray-900">Dueño & Administrador General</h3>
+                  <p className="text-blue-600 font-medium">Lotería y tienda multiproducto – Buenos Aires, Argentina</p>
                 </div>
-                <p className="text-gray-600 mt-2 md:mt-0">2023 - Presente</p>
+                <p className="text-gray-600 mt-2 md:mt-0">2008 – 2022</p>
               </div>
-              <p className="text-gray-700">
-                Desarrollo y mantenimiento de aplicaciones web usando React, Next.js y Node.js. 
-                Colaboración en equipo para implementar nuevas funcionalidades y optimizar 
-                el rendimiento de las aplicaciones existentes.
-              </p>
-              <div className="flex flex-wrap gap-2 mt-4">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React</span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Next.js</span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Node.js</span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">MongoDB</span>
+              <ul className="list-disc list-inside text-gray-700 space-y-2">
+                <li>Administración integral del negocio: gestión contable, control de stock y atención al cliente.</li>
+                <li>Operación de agencia de lotería con terminales de apuestas y organización de carreras hípicas en tiempo real.</li>
+                <li>Venta de productos generales: gestión de proveedores y logística.</li>
+                <li>Implementación de herramientas digitales para seguimiento de ventas y optimización de inventario.</li>
+                <li>Estrategias de marketing local y digital adaptadas a nuevas demandas.</li>
+              </ul>
+              <div className="mt-4">
+                <h4 className="font-semibold text-gray-900 mb-2">Logros destacados:</h4>
+                <ul className="list-disc list-inside text-gray-700">
+                  <li>Más de 14 años sosteniendo un negocio rentable en un mercado competitivo.</li>
+                  <li>Incorporación progresiva de soluciones tecnológicas para automatizar tareas administrativas.</li>
+                </ul>
               </div>
             </div>
 
-            {/* Experiencia 2 */}
+            {/* Experiencia freelance */}
             <div className="bg-white rounded-xl p-6 shadow-lg">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Desarrollador Frontend
-                  </h3>
-                  <p className="text-blue-600 font-medium">Startup XYZ</p>
+                  <h3 className="text-xl font-bold text-gray-900">Desarrollador Freelance (Frontend & Backend)</h3>
+                  <p className="text-blue-600 font-medium">Sistema de gestión para distribuidora avícola – Córdoba, Argentina</p>
                 </div>
-                <p className="text-gray-600 mt-2 md:mt-0">2022 - 2023</p>
+                <p className="text-gray-600 mt-2 md:mt-0">2024</p>
               </div>
-              <p className="text-gray-700">
-                Creación de interfaces de usuario responsive y accesibles. 
-                Implementación de designs complejos y optimización de la experiencia del usuario 
-                en aplicaciones web de alto tráfico.
+              <p className="text-gray-700 mb-4">
+                Desarrollo de página web y sistema interno para gestión de pedidos, clientes y facturación. Automatización de reportes de ventas y generación de listas de distribución. Integración con herramientas de control de stock adaptadas al rubro. Capacitación a los usuarios para el uso del sistema.
               </p>
-              <div className="flex flex-wrap gap-2 mt-4">
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Vue.js</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">TypeScript</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Sass</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Jest</span>
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2">Tecnologías utilizadas:</h4>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Python</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Django</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">HTML/CSS</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">SQLite</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">PostgreSQL</span>
+                </div>
               </div>
             </div>
           </div>

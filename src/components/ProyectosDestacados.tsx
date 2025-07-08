@@ -7,7 +7,7 @@ interface Proyecto {
   tecnologias: string[]
   imagen: string
   linkDemo?: string
-  linkCodigo: string
+
 }
 
 export default function ProyectosDestacados() {
@@ -17,29 +17,29 @@ export default function ProyectosDestacados() {
       id: 1,
       titulo: "Sistema de Gestión de Ventas",
       descripcion: "Sistema web completo desarrollado en Django para gestionar ventas, inventario, gastos y control financiero en tiempo real.",
-      tecnologias: ["Django", "Python", "PostgreSQL", "HTML", "CSS", "JavaScript"],
+      tecnologias: ["Django", "Python", "HTML", "CSS", "JavaScript", "SQLite"],
       imagen: "/imagenes/webapp/panel.png",
-      linkDemo: "#",
-      linkCodigo: "#"
-    },
+      linkDemo: "/proyectos/sistema-ventas",
+      
+     },
     {
+
       id: 2,
       titulo: "E-commerce App",
-      descripcion: "Una aplicación de comercio electrónico completa con carrito de compras, pagos y gestión de inventario.",
-      tecnologias: ["React", "Node.js", "MongoDB", "Stripe"],
-      imagen: "/imagenes/webapp/ventas.png",
-      linkDemo: "#",
-      linkCodigo: "#"
-    },
+      descripcion: "Una aplicación de comercio electrónico completa con carrito de compras, pagos .",
+      tecnologias: ["React", "Next.js", "TypeScript","Tailwind CSS"],
+      imagen: "/imagenes/tiendaapp/tienda.png",
+      linkDemo: "/proyectos/ecommerce",
+     },
     {
       id: 3,
-      titulo: "Dashboard Analytics",
-      descripcion: "Panel de control con gráficos interactivos y métricas en tiempo real para análisis de datos.",
-      tecnologias: ["Vue.js", "D3.js", "Python", "PostgreSQL"],
-      imagen: "/imagenes/tiendaapp/screenshot.png",
-      linkDemo: "#",
-      linkCodigo: "#"
-    }
+      titulo: "Crypto Futures Yield Calculator",
+      descripcion: "Calcula el rendimiento anualizado de contratos futuros trimestrales de criptomonedas comparando precios spot vs futuros.",
+      tecnologias: ["Python"],
+      imagen: "/imagenes/crypto/okx.png",
+      linkDemo: "/proyectos/crypto-futures",
+     
+    },
   ]
 
   return (
@@ -103,14 +103,7 @@ export default function ProyectosDestacados() {
                       Ver Demo
                     </a>
                   )}
-                  <a
-                    href={proyecto.linkCodigo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 border border-gray-300 text-gray-700 text-center py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-                  >
-                    Ver Código
-                  </a>
+                
                 </div>
               </div>
             </div>

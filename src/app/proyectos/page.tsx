@@ -12,7 +12,8 @@ interface Proyecto {
   tecnologias: string[]
   imagen: string
   linkDemo?: string
-  linkCodigo: string
+  linkCodigo?: string
+ 
   categoria: 'Web App' | 'E-commerce' | 'Dashboard' | 'API' | 'Mobile'
   fecha: string
 }
@@ -26,72 +27,82 @@ export default function Proyectos() {
       titulo: "Sistema de gestión de ventas, stock y finanzas",
       descripcion: "Sistema web para ventas y control de caja",
       descripcionCompleta: "Sistema web desarrollado en Django para gestionar ventas, stock, gastos y control de caja. Incluye reportes diarios de ganancias y panel administrativo para el negocio. Permite registrar productos, operaciones y obtener un resumen financiero en tiempo real.",
-      tecnologias: ["Django", "Python", "PostgreSQL", "HTML", "CSS", "JavaScript"],
+      tecnologias: ["Django", "Python", "SQLite", "HTML", "CSS", "JavaScript"],
       imagen: "/imagenes/webapp/panelprivado.png",
       linkDemo: "/proyectos/sistema-ventas",
-      linkCodigo: "#",
+     
       categoria: "Web App",
-      fecha: "2024"
+      fecha: "2025"
     },
     {
       id: 2,
       titulo: "E-commerce Full Stack",
       descripcion: "Tienda online completa con carrito y pagos",
       descripcionCompleta: "Una aplicación de comercio electrónico completa con autenticación de usuarios, carrito de compras, sistema de pagos con Stripe, panel de administración y gestión de inventario. Incluye funciones de búsqueda, filtros y recomendaciones.",
-      tecnologias: ["React", "Node.js", "Express", "MongoDB", "Stripe", "JWT"],
-      imagen: "/imagenes/webapp/panel.png",
-      linkDemo: "#",
-      linkCodigo: "#",
+      tecnologias: ["React", "Next.js", "TypeScript", "Tailwind", "Stripe", "Vercel"],
+      imagen: "/imagenes/tiendaapp/tienda.png",
+      linkDemo: "/proyectos/ecommerce",
+     
       categoria: "E-commerce",
-      fecha: "2023"
+      fecha: "2024"
     },
     {
       id: 3,
-      titulo: "Dashboard Analytics",
-      descripcion: "Panel de control con gráficos interactivos",
-      descripcionCompleta: "Dashboard para análisis de datos con gráficos interactivos, métricas en tiempo real y reportes personalizados. Incluye autenticación de usuarios, diferentes roles y permisos, y exportación de datos en múltiples formatos.",
-      tecnologias: ["Vue.js", "D3.js", "Python", "FastAPI", "PostgreSQL", "Docker"],
-      imagen: "/placeholder-project.jpg",
-      linkDemo: "#",
-      linkCodigo: "#",
+      titulo: "Crypto Futures Yield Calculator",
+      descripcion: "Calculadora de rendimientos de futuros cripto",
+      descripcionCompleta: "Herramienta especializada desarrollada en Python para calcular el rendimiento anualizado de contratos futuros trimestrales de criptomonedas. Compara precios spot vs futuros para identificar oportunidades de arbitraje y evaluar estrategias de carry trade.",
+      tecnologias: ["Python", "Pandas", "NumPy", "Datetime", "Decimal", "Math"],
+      imagen: "/imagenes/crypto/okx.png",
+      linkDemo: "/proyectos/crypto-futures",
+     
       categoria: "Dashboard",
       fecha: "2023"
     },
     {
       id: 4,
-      titulo: "API REST Escalable",
-      descripcion: "API robusta para aplicaciones móviles",
-      descripcionCompleta: "API REST desarrollada con Node.js y Express, diseñada para ser escalable y mantener alta disponibilidad. Incluye autenticación JWT, rate limiting, documentación con Swagger y tests automatizados.",
-      tecnologias: ["Node.js", "Express", "MongoDB", "Redis", "JWT", "Swagger"],
+      titulo: "API CRUD CSV con FastAPI",
+      descripcion: "En construcción: API CRUD con FastAPI, autenticación JWT y análisis de CSV",
+      descripcionCompleta: `API CRUD desarrollada con FastAPI en Python:
+✅ Autenticación JWT con roles
+✅ Subida de archivos CSV (solo usuarios autenticados)
+✅ Análisis de CSV con pandas para devolver estadísticas e insights
+✅ Opcional: guardar resultados en base de datos o devolver directamente`,
+      tecnologias: ["Python", "FastAPI", "Pandas", "JWT", "PostgreSQL"],
       imagen: "/placeholder-project.jpg",
       linkDemo: "#",
-      linkCodigo: "#",
+     
       categoria: "API",
-      fecha: "2022"
+      fecha: "2025"
     },
     {
       id: 5,
-      titulo: "App de Gestión de Tareas",
-      descripcion: "Aplicación móvil para productividad",
-      descripcionCompleta: "Aplicación móvil desarrollada con React Native para gestión de tareas y proyectos. Incluye sincronización offline, notificaciones push, colaboración en equipo y analytics de productividad.",
-      tecnologias: ["React Native", "TypeScript", "Firebase", "Redux", "Expo"],
+      titulo: "Crypto DCA Bot",
+      descripcion: "En construcción: app para compras DCA de BTC con métricas personalizadas",
+      descripcionCompleta: `Bot de Dollar-Cost Averaging (DCA) para criptomonedas:
+Permite definir frecuencia y métricas de compra de BTC
+Ejecuta compras automáticas según estrategia
+Ofrece reportes y estadísticas avanzadas de inversión`,
+      tecnologias: ["Python", "Node.js", "React"],
       imagen: "/placeholder-project.jpg",
       linkDemo: "#",
-      linkCodigo: "#",
-      categoria: "Mobile",
-      fecha: "2022"
+    
+      categoria: "Dashboard",
+      fecha: "2025"
     },
     {
       id: 6,
-      titulo: "Sistema de Blog",
-      descripcion: "CMS personalizado con editor WYSIWYG",
-      descripcionCompleta: "Sistema de gestión de contenidos desarrollado desde cero con editor de texto enriquecido, sistema de comentarios, categorías, tags y SEO optimizado. Incluye panel de administración completo.",
-      tecnologias: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "TinyMCE"],
+      titulo: "Crypto Wallet Manager",
+      descripcion: "En construcción: wallet para gestionar múltiples carteras cripto",
+      descripcionCompleta: `Herramienta de gestión de wallets:
+Visualiza saldos de varias carteras
+Administra tenencias y genera reportes de portafolio
+Soporte para múltiples blockchains`,
+      tecnologias: ["React", "TypeScript", "Web3.js", "Ethers.js"],
       imagen: "/placeholder-project.jpg",
       linkDemo: "#",
-      linkCodigo: "#",
-      categoria: "Web App",
-      fecha: "2021"
+     
+      categoria: "Dashboard",
+      fecha: "2025"
     }
   ]
 
@@ -212,15 +223,7 @@ export default function Proyectos() {
                         Ver Demo
                       </a>
                     )}
-                    <a
-                      href={proyecto.linkCodigo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="flex-1 border border-gray-300 text-gray-700 text-center py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium text-sm"
-                    >
-                      Ver Código
-                    </a>
+                    
                   </div>
                 </div>
               </div>

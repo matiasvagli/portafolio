@@ -5,7 +5,7 @@ export const personalData = {
   // Información básica
   name: "Matias Vagliviello",
   firstName: "Matias", // Para usos más casuales
-  title: "Backend Developer | Tecnólogo Autodidacta",
+  title: "Backend Developer",
   
   // Información de contacto
   email: "vaglimatias@gmail.com",
@@ -14,22 +14,22 @@ export const personalData = {
 
   // Enlaces sociales
   social: {
-    github: "https://github.com/tuusuario",
-    linkedin: "https://linkedin.com/in/tuusuario",
-    twitter: "https://twitter.com/tuusuario", // opcional
-    website: "https://tu-sitio.com" // opcional
+    github: "https://github.com/matiasvagli",
+    linkedin: "https://www.linkedin.com/in/matias-vagliviello-07403736b/", // opcional
+    twitter: "https://twitter.com/vaglimatias", // opcional
+    website: "https://matiasvagli.com" // opcional
   },
   
   // SEO y metadatos
-  description: "Backend Developer con más de 20 años de pasión por la tecnología. Especializado en Python, análisis de datos y blockchain, con experiencia autodidacta desde los sistemas Unix hasta las tecnologías modernas.",
+  description: "Backend Developer apasionado por la tecnología. Especializado en Python, análisis de datos y blockchain, con experiencia autodidacta desde los sistemas Unix hasta las tecnologías modernas.",
   keywords: ["Backend Developer", "Python", "Data Analysis", "Linux", "Blockchain", "APIs", "Automatización", "Django"],
   
   // Información profesional
-  experience: "20+ años en tecnología, 2 años enfocado en desarrollo profesional",
+  experience: "2 años enfocado en desarrollo profesional",
   availability: "Disponible para nuevos proyectos",
   
   // Bio corta
-  bio: "Tecnólogo autodidacta con más de 20 años de experiencia. Comenzé con sistemas Unix a los 14 años y Linux en los '90s. Tras explorar diferentes caminos, regresé con fuerza al desarrollo backend, especializándome en Python, análisis de datos y blockchain."
+  bio: "Apasionado por la tecnología desde los sistemas Unix a los 14 años y Linux en los '90s. Tras explorar diferentes caminos, regresé con fuerza al desarrollo backend, especializándome en Python, análisis de datos y blockchain."
 }
 
 // Función helper para obtener el nombre completo del sitio
