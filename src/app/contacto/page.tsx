@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Metadata } from 'next'
 import { personalData } from '@/config/personalData'
 
 export default function Contacto() {

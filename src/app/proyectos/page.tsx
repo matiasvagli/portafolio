@@ -1,6 +1,5 @@
 'use client'
 
-import { Metadata } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 

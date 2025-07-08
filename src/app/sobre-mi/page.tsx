@@ -37,7 +37,7 @@ export default function SobreMi() {
                   Mi historia con la tecnología comenzó en 1998, cuando tenía 14 años. Mi padre trabajaba con sistemas Unix haciendo data entry, y me fascinaba ver cómo funcionaban esas computadoras tan distintas a todo lo que conocía.
                 </p>
                 <p className="mb-4">
-                  Al año siguiente recibí mi primera PC, y con ella mi destino cambió. No contento con Windows 3.11, me lancé a instalar Linux —en una época sin internet en casa, solo con “La Biblia”, un libro de más de 500 páginas que servía como guía para los usuarios de Linux—. Ahí di mis primeros pasos en C, compilé mis primeros kernels y escribí mi primer "Hola Mundo".
+                  Al año siguiente recibí mi primera PC, y con ella mi destino cambió. No contento con Windows 3.11, me lancé a instalar Linux —en una época sin internet en casa, solo con “La Biblia”, un libro de más de 500 páginas que servía como guía para los usuarios de Linux—. Ahí di mis primeros pasos en C, compilé mis primeros kernels y escribí mi primer &quot;Hola Mundo&quot;.
                 </p>
                 <p className="mb-4">
                   Por entonces, los domingos solía recorrer la feria del Parque Rivadavia, el principal punto de encuentro donde se compartía información, se compraban libros y revistas de computación, y se intercambiaban experiencias que hoy encontramos fácilmente online.
