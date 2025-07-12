@@ -59,17 +59,13 @@ export default function Proyectos() {
     },
     {
       id: 4,
-      titulo: "API CRUD CSV con FastAPI",
-      descripcion: "En construcción: API CRUD con FastAPI, autenticación JWT y análisis de CSV",
-      descripcionCompleta: `API CRUD desarrollada con FastAPI en Python:
-✅ Autenticación JWT con roles
-✅ Subida de archivos CSV (solo usuarios autenticados)
-✅ Análisis de CSV con pandas para devolver estadísticas e insights
-✅ Opcional: guardar resultados en base de datos o devolver directamente`,
-      tecnologias: ["Python", "FastAPI", "Pandas", "JWT", "PostgreSQL"],
-      imagen: "/placeholder-project.jpg",
-      linkDemo: "#",
-     
+      titulo: "API Usuarios & CSV con FastAPI",
+      descripcion: "API profesional para gestión de usuarios, roles y análisis avanzado de archivos CSV",
+      descripcionCompleta:
+        "Desarrollada con FastAPI y MongoDB, esta API permite registrar y autenticar usuarios con roles, proteger rutas mediante JWT y procesar archivos CSV para obtener estadísticas y datos limpios. Su arquitectura modular y validaciones robustas la hacen ideal para proyectos escalables y aplicaciones reales. Incluye endpoints para administración de usuarios, login seguro, subida y análisis de CSV, y está lista para integrarse con bases de datos o expandirse según tus necesidades.",
+      tecnologias: ["Python", "FastAPI", "MongoDB", "Pandas", "JWT", "Passlib"],
+      imagen: "/imagenes/Fast-api/codigo.png",
+      linkDemo: "/proyectos/fast-api",
       categoria: "API",
       fecha: "2025"
     },

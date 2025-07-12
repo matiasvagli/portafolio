@@ -1,7 +1,11 @@
+'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function EcommercePage() {
+  const [modalImg, setModalImg] = useState<string | null>(null)
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -188,7 +192,6 @@ export default function EcommercePage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
             Capturas de Pantalla
           </h2>
-          
           <div className="space-y-8">
             {/* Screenshot 1 - Página Principal */}
             <div className="bg-white rounded-xl shadow-lg p-6">
@@ -196,83 +199,79 @@ export default function EcommercePage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Página Principal</h3>
                 <p className="text-gray-600">Landing page con productos destacados y navegación principal</p>
               </div>
-              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+              <button
+                className="relative h-[300px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/tiendaapp/tienda.png")}
+              >
                 <Image
                   src="/imagenes/tiendaapp/tienda.png"
                   alt="Página Principal"
                   fill
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                 />
-              </div>
+              </button>
             </div>
-
             {/* Screenshot 2 - Catálogo */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="mb-4">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Catálogo de Productos</h3>
                 <p className="text-gray-600">Vista de productos con filtros y opciones de búsqueda</p>
               </div>
-              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+              <button
+                className="relative h-[300px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/tiendaapp/carrito.png")}
+              >
                 <Image
                   src="/imagenes/tiendaapp/carrito.png"
                   alt="Catálogo de Productos"
                   fill
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                 />
-              </div>
+              </button>
             </div>
-
             {/* Screenshot 3 - Detalle de Producto */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="mb-4">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Detalle de Producto</h3>
                 <p className="text-gray-600">Vista individual con información completa y opciones de compra</p>
               </div>
-              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+              <button
+                className="relative h-[300px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/tiendaapp/pago.png")}
+              >
                 <Image
                   src="/imagenes/tiendaapp/pago.png"
                   alt="Detalle de Producto"
                   fill
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                 />
-              </div>
+              </button>
             </div>
-
-            {/* Grid de 2 columnas */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Screenshot 4 - Carrito */}
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Carrito de Compras</h3>
-                  <p className="text-gray-600 text-sm">Gestión de productos y cálculo de totales</p>
-                </div>
-                <div className="relative h-80 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="/imagenes/tiendaapp/devo.png"
-                    alt="Carrito de Compras"
-                    fill
-                    className="object-contain p-3"
-                  />
-                </div>
-              </div>
-
-              {/* Screenshot 5 - Checkout */}
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Proceso de Pago</h3>
-                  <p className="text-gray-600 text-sm">Checkout seguro con múltiples opciones</p>
-                </div>
-                <div className="relative h-80 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="/imagenes/tiendaapp/contacto.png"
-                    alt="Proceso de Pago"
-                    fill
-                    className="object-contain p-3"
-                  />
-                </div>
-              </div>
-            </div>
+            {/* ...agrega más screenshots si lo deseas... */}
           </div>
+          {/* Modal */}
+          {modalImg && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+              onClick={() => setModalImg(null)}
+            >
+              <div className="relative">
+                <Image
+                  src={modalImg}
+                  alt="Captura ampliada"
+                  width={900}
+                  height={600}
+                  className="rounded-xl shadow-2xl"
+                />
+                <button
+                  className="absolute top-2 right-2 bg-white rounded-full px-3 py-1 text-gray-800 font-bold shadow hover:bg-gray-200"
+                  onClick={() => setModalImg(null)}
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

@@ -1,7 +1,11 @@
+'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function CryptoFuturesPage() {
+  const [modalImg, setModalImg] = useState<string | null>(null)
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -47,15 +51,41 @@ export default function CryptoFuturesPage() {
               Herramienta intuitiva para análisis de rendimientos en el mercado de futuros de criptomonedas
             </p>
           </div>
-          <div className="relative h-[500px] bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg">
+          <button
+            className="relative h-[500px] w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+            onClick={() => setModalImg("/imagenes/crypto/okx.png")}
+          >
             <Image
               src="/imagenes/crypto/okx.png"
               alt="Vista principal de la calculadora"
               fill
-              className="object-contain p-4"
+              className="object-contain p-4 transition-transform duration-200 hover:scale-105"
             />
-          </div>
+          </button>
         </div>
+        {/* Modal */}
+        {modalImg && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+            onClick={() => setModalImg(null)}
+          >
+            <div className="relative">
+              <Image
+                src={modalImg}
+                alt="Captura ampliada"
+                width={900}
+                height={600}
+                className="rounded-xl shadow-2xl"
+              />
+              <button
+                className="absolute top-2 right-2 bg-white rounded-full px-3 py-1 text-gray-800 font-bold shadow hover:bg-gray-200"
+                onClick={() => setModalImg(null)}
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Descripción y Características */}
@@ -201,7 +231,6 @@ export default function CryptoFuturesPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
             Capturas de Pantalla
           </h2>
-          
           <div className="space-y-8">
             {/* Screenshot 1 - Interfaz Principal */}
             <div className="bg-white rounded-xl shadow-lg p-6">
@@ -209,32 +238,36 @@ export default function CryptoFuturesPage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Interfaz Principal</h3>
                 <p className="text-gray-600">Pantalla principal con campos de entrada y cálculos</p>
               </div>
-              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+              <button
+                className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/crypto/okx.png")}
+              >
                 <Image
                   src="/imagenes/crypto/okx.png"
                   alt="Interfaz Principal"
                   fill
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                 />
-              </div>
+              </button>
             </div>
-
             {/* Screenshot 2 - Resultados */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="mb-4">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Resultados de Cálculo</h3>
                 <p className="text-gray-600">Muestra del análisis con rendimientos anualizados</p>
               </div>
-              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+              <button
+                className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/crypto/binance.png")}
+              >
                 <Image
                   src="/imagenes/crypto/binance.png"
                   alt="Resultados de Cálculo"
                   fill
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                 />
-              </div>
+              </button>
             </div>
-
             {/* Grid de 2 columnas */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Screenshot 3 - Código */}
@@ -243,33 +276,61 @@ export default function CryptoFuturesPage() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Estructura del Código</h3>
                   <p className="text-gray-600 text-sm">Vista del código Python bien documentado</p>
                 </div>
-                <div className="relative h-80 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <button
+                  className="relative h-80 w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                  onClick={() => setModalImg("/imagenes/crypto/c1.png")}
+                >
                   <Image
                     src="/imagenes/crypto/c1.png"
                     alt="Estructura del Código"
                     fill
-                    className="object-contain p-3"
+                    className="object-contain p-3 transition-transform duration-200 hover:scale-105"
                   />
-                </div>
+                </button>
               </div>
-
               {/* Screenshot 4 - Terminal */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <div className="mb-4">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Ejecución en Terminal</h3>
                   <p className="text-gray-600 text-sm">Ejemplo de uso desde línea de comandos</p>
                 </div>
-                <div className="relative h-80 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <button
+                  className="relative h-80 w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                  onClick={() => setModalImg("/imagenes/crypto/c2.png")}
+                >
                   <Image
                     src="/imagenes/crypto/c2.png"
                     alt="Ejecución en Terminal"
                     fill
-                    className="object-contain p-3"
+                    className="object-contain p-3 transition-transform duration-200 hover:scale-105"
                   />
-                </div>
+                </button>
               </div>
             </div>
           </div>
+          {/* Modal */}
+          {modalImg && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+              onClick={() => setModalImg(null)}
+            >
+              <div className="relative">
+                <Image
+                  src={modalImg}
+                  alt="Captura ampliada"
+                  width={900}
+                  height={600}
+                  className="rounded-xl shadow-2xl"
+                />
+                <button
+                  className="absolute top-2 right-2 bg-white rounded-full px-3 py-1 text-gray-800 font-bold shadow hover:bg-gray-200"
+                  onClick={() => setModalImg(null)}
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

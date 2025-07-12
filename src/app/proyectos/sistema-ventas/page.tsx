@@ -1,8 +1,12 @@
+'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import VideoPlayer from '@/components/VideoPlayer'
 
 export default function SistemaVentasPage() {
+  const [modalImg, setModalImg] = useState<string | null>(null)
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -45,15 +49,41 @@ export default function SistemaVentasPage() {
               Diagrama de flujo que muestra la estructura y el flujo de datos del sistema de gestión
             </p>
           </div>
-          <div className="relative h-[500px] bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg">
+          <button
+            className="relative h-[500px] w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+            onClick={() => setModalImg("/imagenes/webapp/diagram.png")}
+          >
             <Image
               src="/imagenes/webapp/diagram.png"
               alt="Diagrama de flujo del sistema de ventas"
               fill
-              className="object-contain p-4"
+              className="object-contain p-4 transition-transform duration-200 hover:scale-105"
             />
-          </div>
+          </button>
         </div>
+        {/* Modal */}
+        {modalImg && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+            onClick={() => setModalImg(null)}
+          >
+            <div className="relative">
+              <Image
+                src={modalImg}
+                alt="Captura ampliada"
+                width={900}
+                height={600}
+                className="rounded-xl shadow-2xl"
+              />
+              <button
+                className="absolute top-2 right-2 bg-white rounded-full px-3 py-1 text-gray-800 font-bold shadow hover:bg-gray-200"
+                onClick={() => setModalImg(null)}
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Descripción y Características */}
@@ -194,8 +224,6 @@ export default function SistemaVentasPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
             Capturas de Pantalla
           </h2>
-          
-          {/* Grid con columnas más anchas para mejor visualización */}
           <div className="space-y-8">
             {/* Screenshot 1 - Dashboard */}
             <div className="bg-white rounded-xl shadow-lg p-6">
@@ -203,32 +231,36 @@ export default function SistemaVentasPage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Dashboard Principal</h3>
                 <p className="text-gray-600">Vista general del sistema con métricas principales</p>
               </div>
-              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+              <button
+                className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/webapp/panel.png")}
+              >
                 <Image
                   src="/imagenes/webapp/panel.png"
                   alt="Dashboard Principal"
                   fill
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                 />
-              </div>
+              </button>
             </div>
-
             {/* Screenshot 2 - Productos */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="mb-4">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Gestión de Productos</h3>
                 <p className="text-gray-600">Interfaz de inventario y control de stock editable con impresión</p>
               </div>
-              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+              <button
+                className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/webapp/precios.png")}
+              >
                 <Image
                   src="/imagenes/webapp/precios.png"
                   alt="Gestión de Productos"
                   fill
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                 />
-              </div>
+              </button>
             </div>
-
             {/* Grid de 2 columnas para las siguientes */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Screenshot 3 - Reportes */}
@@ -237,121 +269,154 @@ export default function SistemaVentasPage() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Gastos</h3>
                   <p className="text-gray-600 text-sm">Ingreso de gastos y desperdicios</p>
                 </div>
-                <div className="relative h-80 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <button
+                  className="relative h-80 w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                  onClick={() => setModalImg("/imagenes/webapp/gastos.png")}
+                >
                   <Image
                     src="/imagenes/webapp/gastos.png"
                     alt="Reportes y Estadísticas"
                     fill
-                    className="object-contain p-3"
+                    className="object-contain p-3 transition-transform duration-200 hover:scale-105"
                   />
-                </div>
+                </button>
               </div>
-
               {/* Screenshot 4 - Ventas */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <div className="mb-4">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Control de Ventas</h3>
                   <p className="text-gray-600 text-sm">Ingreso de ticket de venta</p>
                 </div>
-                <div className="relative h-80 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <button
+                  className="relative h-80 w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                  onClick={() => setModalImg("/imagenes/webapp/ventas.png")}
+                >
                   <Image
                     src="/imagenes/webapp/ventas.png"
                     alt="Control de Ventas"
                     fill
-                    className="object-contain p-3"
+                    className="object-contain p-3 transition-transform duration-200 hover:scale-105"
                   />
-                </div>
+                </button>
               </div>
             </div>
-          </div>
-
-          {/* Sección Administrativa */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-              Panel Administrativo - Acceso Privado
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Panel Administrativo - Acceso Privado */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
               {/* Screenshot 5 - Login */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Sistema de Login</h3>
                   <p className="text-gray-600">Autenticación para métricas privadas</p>
                 </div>
-                <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <button
+                  className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                  onClick={() => setModalImg("/imagenes/webapp/login.png")}
+                >
                   <Image
                     src="/imagenes/webapp/login.png"
                     alt="Sistema de Login"
                     fill
-                    className="object-contain p-4"
+                    className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                   />
-                </div>
+                </button>
               </div>
-
               {/* Screenshot 6 - Gestión de Empleados */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Gestión de Empleados</h3>
                   <p className="text-gray-600">Control de empleados , métricas de negocio</p>
                 </div>
-                <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <button
+                  className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                  onClick={() => setModalImg("/imagenes/webapp/panelprivado.png")}
+                >
                   <Image
                     src="/imagenes/webapp/panelprivado.png"
                     alt="Gestión de Empleados"
                     fill
-                    className="object-contain p-4"
+                    className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                   />
-                </div>
+                </button>
               </div>
-
               {/* Screenshot 7 - Reporte de empleados */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Reporte de empleados</h3>
                   <p className="text-gray-600">Ingreso de empleados, datos personales</p>
                 </div>
-                <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <button
+                  className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                  onClick={() => setModalImg("/imagenes/webapp/empleados3.png")}
+                >
                   <Image
                     src="/imagenes/webapp/empleados3.png"
                     alt="Reporte de empleados"
                     fill
-                    className="object-contain p-4"
+                    className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                   />
-                </div>
+                </button>
               </div>
-
               {/* Screenshot 8 - Reportes Avanzados */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Pago de sueldos y aguinaldos</h3>
                   <p className="text-gray-600">Pagos de haberes con exportación a CSV</p>
                 </div>
-                <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <button
+                  className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                  onClick={() => setModalImg("/imagenes/webapp/sueldos.png")}
+                >
                   <Image
                     src="/imagenes/webapp/sueldos.png"
                     alt="Pago de sueldos y aguinaldos"
                     fill
-                    className="object-contain p-4"
+                    className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                   />
-                </div>
+                </button>
               </div>
             </div>
-
             {/* Screenshot 9 - Resumen  (grande) */}
             <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
               <div className="mb-4">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Resumen Ganancias</h3>
                 <p className="text-gray-600">Vista de ganancias totales , búsqueda dia semana, año , exportables a CSV</p>
               </div>
-              <div className="relative h-[500px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
+              <button
+                className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/webapp/resumen2.png")}
+              >
                 <Image
                   src="/imagenes/webapp/resumen2.png"
                   alt="Resumen Ganancias"
                   fill
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
                 />
-              </div>
+              </button>
             </div>
           </div>
+          {/* Modal */}
+          {modalImg && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+              onClick={() => setModalImg(null)}
+            >
+              <div className="relative">
+                <Image
+                  src={modalImg}
+                  alt="Captura ampliada"
+                  width={900}
+                  height={600}
+                  className="rounded-xl shadow-2xl"
+                />
+                <button
+                  className="absolute top-2 right-2 bg-white rounded-full px-3 py-1 text-gray-800 font-bold shadow hover:bg-gray-200"
+                  onClick={() => setModalImg(null)}
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
