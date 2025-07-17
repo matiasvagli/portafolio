@@ -1,7 +1,7 @@
 interface Habilidad {
   nombre: string
-  estado: 'Aprendiendo' | 'Trabajando' | 'Experto' | 'En Proyecto'
-  categoria: 'Lenguajes' | 'Frontend' | 'Backend' | 'Base de Datos' | 'DevOps' | 'Herramientas' | 'Blockchain' | 'Conceptos'
+  estado: 'Aprendiendo' | 'Trabajando' | 'Trabajando' | 'En Proyecto'
+  categoria: 'Lenguajes' | 'Frontend' | 'Backend' | 'Base de Datos' | 'DevOps + Servicios Cloud' | 'Herramientas' | 'Blockchain' | 'Conceptos'
 }
 
 export default function Habilidades() {
@@ -23,7 +23,7 @@ export default function Habilidades() {
     { nombre: 'Node.js', estado: 'Trabajando', categoria: 'Backend' },
     { nombre: 'Django', estado: 'Trabajando', categoria: 'Backend' },
     { nombre: 'Express.js', estado: 'Trabajando', categoria: 'Backend' },
-    { nombre: 'FastAPI', estado: 'Aprendiendo', categoria: 'Backend' },
+    { nombre: 'FastAPI', estado: 'Trabajando', categoria: 'Backend' },
     { nombre: 'REST APIs', estado: 'Trabajando', categoria: 'Backend' },
 
     // Base de Datos
@@ -31,17 +31,19 @@ export default function Habilidades() {
     { nombre: 'PostgreSQL', estado: 'Trabajando', categoria: 'Base de Datos' },
     { nombre: 'MySQL', estado: 'Trabajando', categoria: 'Base de Datos' },
     
-    // DevOps
-    { nombre: 'Docker', estado: 'Aprendiendo', categoria: 'DevOps' },
-    { nombre: 'AWS', estado: 'Aprendiendo', categoria: 'DevOps' },
-    { nombre: 'Vercel', estado: 'Trabajando', categoria: 'DevOps' },
+    // DevOps + Servicios Cloud
+    { nombre: 'Docker', estado: 'Aprendiendo', categoria: 'DevOps + Servicios Cloud' },
+    { nombre: 'AWS', estado: 'Aprendiendo', categoria: 'DevOps + Servicios Cloud' },
+    { nombre: 'Vercel', estado: 'Trabajando', categoria: 'DevOps + Servicios Cloud' },
+    { nombre: 'Render', estado: 'Trabajando', categoria: 'DevOps + Servicios Cloud' },
+    { nombre: 'NeonDB', estado: 'Trabajando', categoria: 'DevOps + Servicios Cloud' },
     
     // Herramientas
-    { nombre: 'Git/GitHub', estado: 'Experto', categoria: 'Herramientas' },
-    { nombre: 'VS Code', estado: 'Experto', categoria: 'Herramientas' },
+    { nombre: 'Git/GitHub', estado: 'Trabajando', categoria: 'Herramientas' },
+    { nombre: 'VS Code', estado: 'Trabajando', categoria: 'Herramientas' },
     { nombre: 'Figma', estado: 'Trabajando', categoria: 'Herramientas' },
     { nombre: 'Postman', estado: 'Trabajando', categoria: 'Herramientas' },
-    { nombre: 'IA/ChatGPT', estado: 'Experto', categoria: 'Herramientas' },
+    { nombre: 'IA/ChatGPT', estado: 'Trabajando', categoria: 'Herramientas' },
     
     // Blockchain & Cripto
     { nombre: 'APIs Cripto', estado: 'Trabajando', categoria: 'Blockchain' },
@@ -51,14 +53,14 @@ export default function Habilidades() {
     { nombre: 'Solidity', estado: 'Aprendiendo', categoria: 'Blockchain' },
     
     // Conceptos & Fundamentos
-    { nombre: 'Lógica de Programación', estado: 'Experto', categoria: 'Conceptos' },
+    { nombre: 'Lógica de Programación', estado: 'Trabajando', categoria: 'Conceptos' },
     { nombre: 'Algoritmos', estado: 'Trabajando', categoria: 'Conceptos' },
     { nombre: 'Estructuras de Datos', estado: 'Trabajando', categoria: 'Conceptos' },
     { nombre: 'Patrones de Diseño', estado: 'Aprendiendo', categoria: 'Conceptos' },
     { nombre: 'Clean Code', estado: 'Trabajando', categoria: 'Conceptos' }
   ]
 
-  const categorias = ['Lenguajes', 'Frontend', 'Backend', 'Base de Datos', 'DevOps', 'Herramientas', 'Blockchain', 'Conceptos'] as const
+  const categorias = ['Lenguajes', 'Frontend', 'Backend', 'Base de Datos', 'DevOps + Servicios Cloud', 'Herramientas', 'Blockchain', 'Conceptos'] as const
 
   const getEstadoColor = (estado: string) => {
     switch (estado) {
@@ -150,7 +152,7 @@ export default function Habilidades() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-base">⭐</span>
-                <span className="text-gray-600">Experto</span>
+                <span className="text-gray-600">Trabajando</span>
               </div>
             </div>
           </div>

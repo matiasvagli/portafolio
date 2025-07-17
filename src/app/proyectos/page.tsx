@@ -26,7 +26,7 @@ export default function Proyectos() {
       titulo: "Sistema de gestión de ventas, stock y finanzas",
       descripcion: "Sistema web para ventas y control de caja",
       descripcionCompleta: "Sistema web desarrollado en Django para gestionar ventas, stock, gastos y control de caja. Incluye reportes diarios de ganancias y panel administrativo para el negocio. Permite registrar productos, operaciones y obtener un resumen financiero en tiempo real.",
-      tecnologias: ["Django", "Python", "SQLite", "HTML", "CSS", "JavaScript"],
+      tecnologias: ["Django", "Python", "PostgreSQL", "NeonDB", "Render", "HTML", "CSS", "JavaScript"],
       imagen: "/imagenes/webapp/panelprivado.png",
       linkDemo: "/proyectos/sistema-ventas",
      

@@ -97,38 +97,22 @@ export default function SistemaVentasPage() {
               </h2>
               <div className="prose prose-lg text-gray-600">
                 <p>
-                  Sistema web integral desarrollado con Django que permite gestionar 
-                  todos los aspectos financieros y operativos de un negocio. 
-                  Incluye módulos para ventas, inventario, gastos, gestión de empleados y reportes.
+                  Sistema web integral desarrollado con Django que permite gestionar todos los aspectos financieros y operativos de un negocio. Incluye módulos para ventas, inventario, gastos, gestión de empleados y reportes.
                 </p>
                 <p>
-                  <strong>Sistema desarrollado a medida</strong> a pedido de un cliente específico, 
-                  cumpliendo con el primer requisito fundamental: <strong>no cortar nunca el flujo 
-                  de ventas</strong> por ningún error administrativo como olvidarse de cargar el stock 
-                  o cualquier otro descuido operativo.
+                  <strong>Sistema desarrollado a medida</strong> a pedido de un cliente específico, cumpliendo con el primer requisito fundamental: <strong>no cortar nunca el flujo de ventas</strong> por ningún error administrativo como olvidarse de cargar el stock o cualquier otro descuido operativo.
                 </p>
                 <p>
-                  El sistema es completamente automático y realiza todos los cálculos de ganancia 
-                  tomando los precios de venta al público y compra de cada producto. Los cálculos 
-                  se realizan detalladamente según la categoría y color del producto, optimizando 
-                  la precisión en la gestión financiera.
+                  El sistema es completamente automático y realiza todos los cálculos de ganancia tomando los precios de venta al público y compra de cada producto. Los cálculos se realizan detalladamente según la categoría y color del producto, optimizando la precisión en la gestión financiera.
                 </p>
                 <p>
-                  Además, calcula automáticamente los desperdicios y mantiene el stock siempre 
-                  actualizado utilizando las compras y ventas para el manejo dinámico del inventario. 
-                  El sistema genera reportes automáticos de ganancias diarias y permite llevar un 
-                  seguimiento detallado de todas las operaciones financieras.
+                  Además, calcula automáticamente los desperdicios y mantiene el stock siempre actualizado utilizando las compras y ventas para el manejo dinámico del inventario. El sistema genera reportes automáticos de ganancias diarias y permite llevar un seguimiento detallado de todas las operaciones financieras.
                 </p>
                 <p>
-                  Diseñado para ser intuitivo y eficiente, con una interfaz 
-                  clara que permite a los usuarios acceder rápidamente a la 
-                  información que necesitan sin intervención manual en los cálculos y 
-                   <strong> garantizando continuidad operativa</strong> en todo momento.
+                  Diseñado para ser intuitivo y eficiente, con una interfaz clara que permite a los usuarios acceder rápidamente a la información que necesitan sin intervención manual en los cálculos y <strong>garantizando continuidad operativa</strong> en todo momento.
                 </p>
                 <p>
-                  <strong>Desarrollo técnico:</strong> Implementado con SQLite para prototipado 
-                  rápido y desarrollo ágil, con arquitectura preparada para migración sencilla 
-                  a PostgreSQL cuando se requiera escalabilidad en producción.
+                  <strong>Despliegue y arquitectura técnica:</strong> Actualmente el sistema está desplegado en <span className="font-semibold text-blue-600">Render</span> y utiliza una base de datos externa <span className="font-semibold text-green-600">NeonDB</span> para máxima seguridad, escalabilidad y disponibilidad. El desarrollo inicial se realizó con SQLite para prototipado rápido, pero la arquitectura está preparada para trabajar con bases de datos PostgreSQL en producción, facilitando la migración y el crecimiento del sistema.
                 </p>
               </div>
             </div>
@@ -203,10 +187,10 @@ export default function SistemaVentasPage() {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Tecnologías Utilizadas
+            Tecnologías y Servicios Utilizados
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {["Django", "Python", "SQLite", "HTML", "CSS", "JavaScript"].map((tech) => (
+            {["Django", "Python", "NeonDB", "Render", "HTML", "CSS", "JavaScript"].map((tech) => (
               <div key={tech} className="text-center">
                 <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl font-bold text-gray-600">{tech[0]}</span>
@@ -225,6 +209,24 @@ export default function SistemaVentasPage() {
             Capturas de Pantalla
           </h2>
           <div className="space-y-8">
+            {/* Imagen Grande Adicional */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Login General</h3>
+                <p className="text-gray-600">Pantalla de acceso para usuarios registrados, asegurando la privacidad y seguridad de la información del sistema.</p>
+              </div>
+              <button
+                className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"
+                onClick={() => setModalImg("/imagenes/webapp/nueva-imagen.png")}
+              >
+                <Image
+                  src="/imagenes/webapp/logo.png"
+                  alt="Login General"
+                  fill
+                  className="object-contain p-4 transition-transform duration-200 hover:scale-105"
+                />
+              </button>
+            </div>
             {/* Screenshot 1 - Dashboard */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="mb-4">
@@ -306,7 +308,7 @@ export default function SistemaVentasPage() {
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Sistema de Login</h3>
-                  <p className="text-gray-600">Autenticación para métricas privadas</p>
+                  <p className="text-gray-600">Autenticación exclusiva para miembros del staff. Los usuarios comunes no tienen acceso a esta sección privada de métricas.</p>
                 </div>
                 <button
                   className="relative h-[500px] w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg flex items-center justify-center focus:outline-none"

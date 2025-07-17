@@ -17,7 +17,9 @@ export default function ProyectosDestacados() {
       id: 1,
       titulo: "Sistema de Gestión de Ventas",
       descripcion: "Sistema web completo desarrollado en Django para gestionar ventas, inventario, gastos y control financiero en tiempo real.",
-      tecnologias: ["Django", "Python", "HTML", "CSS", "JavaScript", "SQLite"],
+      tecnologias: [
+        "Django", "Python", "PostgreSQL", "NeonDB", "Render", "HTML", "CSS", "JavaScript"
+      ],
       imagen: "/imagenes/webapp/panel.png",
       linkDemo: "/proyectos/sistema-ventas",
       
@@ -56,7 +58,7 @@ export default function ProyectosDestacados() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {proyectos.map((proyecto) => (
-            <div key={proyecto.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden border border-gray-200">
+            <div key={proyecto.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden border border-gray-200 flex flex-col h-full">
               {/* Imagen del proyecto */}
               <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-6">
                 <div className="relative w-full h-full">
@@ -70,7 +72,7 @@ export default function ProyectosDestacados() {
               </div>
 
               {/* Contenido */}
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   {proyecto.titulo}
                 </h3>
@@ -80,7 +82,7 @@ export default function ProyectosDestacados() {
                 </p>
 
                 {/* Tecnologías */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4 min-h-[40px]">
                   {proyecto.tecnologias.map((tech, index) => (
                     <span
                       key={index}
@@ -92,7 +94,7 @@ export default function ProyectosDestacados() {
                 </div>
 
                 {/* Enlaces */}
-                <div className="flex gap-3">
+                <div className="flex gap-3 mt-auto">
                   {proyecto.linkDemo && (
                     <a
                       href={proyecto.linkDemo}
@@ -103,7 +105,6 @@ export default function ProyectosDestacados() {
                       Ver Demo
                     </a>
                   )}
-                
                 </div>
               </div>
             </div>
