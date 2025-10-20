@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Sobre mí - Matías ',
@@ -127,6 +128,35 @@ export default function SobreMi() {
                   <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">HTML/CSS</span>
                   <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">SQLite</span>
                   <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">PostgreSQL</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Experiencia Coruja 2025 */}
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">Desarrollador Freelance</h3>
+                  <p className="text-blue-600 font-medium">Coruja Casas Serranas – San Luis / Córdoba, Argentina</p>
+                </div>
+                <p className="text-gray-600 mt-2 md:mt-0">2025</p>
+              </div>
+              <p className="text-gray-700 mb-4">
+                Desarrollo integral del sitio web de alquiler de cabañas: catálogo de propiedades, galerías optimizadas,
+                formulario de reservas con envío de emails, mapas interactivos para ubicación, y optimización para SEO y móviles.
+                Implementación del diseño responsive y despliegue en Vercel.
+              </p>
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2">Tecnologías utilizadas:</h4>
+                <div className="flex flex-wrap gap-2 items-center">
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">Next.js</span>
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">TypeScript</span>
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">Tailwind CSS</span>
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">Framer Motion</span>
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">react-leaflet</span>
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">Zoho Mail</span>
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">Vercel</span>
+                  <Link href="/proyectos/coruja" className="ml-2 text-sm text-blue-600 underline">Ver proyecto</Link>
                 </div>
               </div>
             </div>

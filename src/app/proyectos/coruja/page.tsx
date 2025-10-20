@@ -49,11 +49,35 @@ export default function CorujaPage() {
           </div>
           <div className="relative h-[500px] bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg">
             <Image
-              src="/imagenes/coruja/coruja-home.png"
+              src="/imagenes/coruja/coruja1.jpg"
               alt="Vista principal de Coruja Casas Serranas"
               fill
               className="object-contain p-4"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Galería de Imágenes (adicionales a la portada) */}
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">Galería de Imágenes</h2>
+          <p className="text-gray-600 text-center mb-6">Imágenes adicionales del proyecto (haz clic para ampliar)</p>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {["coruja2.jpg", "coruja4.jpg", "corujacode.jpg", "corujacode1.jpg", "courja3.jpg"].map((img) => (
+              <div key={img} className="rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+                <a href={`/imagenes/coruja/${img}`} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+                  <Image
+                    src={`/imagenes/coruja/${img}`}
+                    alt={`Coruja - ${img}`}
+                    width={800}
+                    height={600}
+                    className="w-full h-40 sm:h-48 object-cover"
+                  />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>

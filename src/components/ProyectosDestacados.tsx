@@ -25,14 +25,13 @@ export default function ProyectosDestacados() {
       
      },
     {
-
       id: 2,
-      titulo: "E-commerce App",
-      descripcion: "Una aplicación de comercio electrónico completa con carrito de compras, pagos .",
-      tecnologias: ["React", "Next.js", "TypeScript","Tailwind CSS"],
-      imagen: "/imagenes/tiendaapp/tienda.png",
-      linkDemo: "/proyectos/ecommerce",
-     },
+      titulo: "Coruja Casas Serranas",
+      descripcion: "Sitio web profesional para alquiler de cabañas en San Luis y Córdoba, Argentina.",
+      tecnologias: ["Next.js 15", "TypeScript", "Tailwind CSS 4", "Framer Motion", "React Hook Form", "Zod"],
+      imagen: "/imagenes/coruja/coruja1.jpg",
+      linkDemo: "/proyectos/coruja",
+    },
     {
       id: 3,
       titulo: "Crypto Futures Yield Calculator",
@@ -98,8 +97,6 @@ export default function ProyectosDestacados() {
                   {proyecto.linkDemo && (
                     <a
                       href={proyecto.linkDemo}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
                     >
                       Ver Demo
