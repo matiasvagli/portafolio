@@ -25,15 +25,24 @@ export default function Contacto() {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      const res = await fetch('/api/contact', {
+      // Envío rápido y sin configuración de SMTP: FormSubmit (ajax)
+      const formSubmitEmail = (process.env.NEXT_PUBLIC_FORMSUBMIT_EMAIL as string) || personalData.email
+      const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(formSubmitEmail)}`
+
+      const res = await fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          nombre: formData.nombre,
+          email: formData.email,
+          asunto: formData.asunto,
+          mensaje: formData.mensaje
+        })
       })
 
-      const data = await res.json()
+      const data = await res.json().catch(() => ({}))
       if (!res.ok) {
-        console.error('Error al enviar formulario:', data)
+        console.error('Error al enviar via FormSubmit:', data)
         setSubmitStatus('error')
       } else {
         setSubmitStatus('success')
