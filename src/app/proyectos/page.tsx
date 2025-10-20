@@ -39,7 +39,7 @@ export default function Proyectos() {
       descripcion: "Sitio web profesional para alquiler de cabañas en San Luis y Córdoba, Argentina.",
       descripcionCompleta: "Coruja Casas Serranas es un sitio web oficial para un complejo turístico real. Desarrollo web profesional para cabañas en las sierras de Córdoba, Argentina. Incluye catálogo de propiedades con descripciones detalladas, galería optimizada de imágenes, formularios de contacto con envío de emails automático, mapas interactivos para ubicar las propiedades, hosting en producción con Vercel, dominio personalizado .com.ar, certificado SSL/HTTPS, configuración DNS profesional, email corporativo con Zoho Mail, integración con WhatsApp Business, formulario de reservas, optimización SEO y performance optimizada para dispositivos móviles.",
       tecnologias: ["Next.js 15", "TypeScript", "Tailwind CSS 4", "Framer Motion", "React Hook Form", "Zod", "Nodemailer", "Zoho SMTP", "react-leaflet"],
-      imagen: "/imagenes/coruja/coruja-home.png",
+      imagen: "/imagenes/coruja/coruja1.jpg",
       linkDemo: "/proyectos/coruja",
       categoria: "Web App",
       fecha: "2025"
