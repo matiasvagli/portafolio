@@ -24,17 +24,28 @@ export default function Contacto() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Aquí puedes integrar con un servicio de email como EmailJS, Formspree, etc.
-    // Por ahora simulamos una respuesta
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await res.json()
+      if (!res.ok) {
+        console.error('Error al enviar formulario:', data)
+        setSubmitStatus('error')
+      } else {
+        setSubmitStatus('success')
+        setFormData({ nombre: '', email: '', asunto: '', mensaje: '' })
+      }
+    } catch (err) {
+      console.error('Excepción al enviar formulario:', err)
+      setSubmitStatus('error')
+    } finally {
       setIsSubmitting(false)
-      setSubmitStatus('success')
-      setFormData({ nombre: '', email: '', asunto: '', mensaje: '' })
-      
-      // Resetear status después de 3 segundos
-      setTimeout(() => setSubmitStatus('idle'), 3000)
-    }, 2000)
+      setTimeout(() => setSubmitStatus('idle'), 4000)
+    }
   }
 
   const contactMethods = [
@@ -164,6 +175,11 @@ export default function Contacto() {
                 {submitStatus === 'success' && (
                   <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
                     ¡Mensaje enviado con éxito! Te responderé pronto.
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                    Ocurrió un error al enviar el mensaje. Por favor intenta de nuevo más tarde o contáctame por email.
                   </div>
                 )}
 
