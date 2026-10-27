@@ -6,7 +6,8 @@
     "dev": "next dev --port 3050",
     "build": "next build",
     "start": "next start --port 3050",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --experimental-strip-types --test --experimental-test-isolation=none tests/*.test.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.6.0",

@@ -1,0 +1,86 @@
+.featured-work-section {
+  padding-block: 44px 36px;
+  padding-inline: clamp(20px, 2.5vw, 48px);
+}
+
+.featured-work-heading { margin-bottom: 32px; text-align: center; }
+
+.featured-work-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "demo demo" "method source";
+  align-items: start; gap: 32px;
+}
+
+.featured-demo { grid-area: demo; min-width: 0; }
+.featured-method { grid-area: method; }
+.featured-open-source { grid-area: source; }
+
+.featured-method, .featured-open-source {
+  min-width: 0; padding-top: 22px; border-top: 1px solid #3f3f46;
+}
+
+.featured-aside-title {
+  font-size: clamp(20px, 1.6vw, 27px); font-weight: 650;
+  line-height: 1.18; letter-spacing: -.035em; color: #e4e4e7;
+}
+
+.featured-method-steps { display: grid; gap: 20px; margin-top: 26px; }
+
+.featured-method-steps li { display: flex; align-items: start; gap: 12px; }
+
+.featured-step-number {
+  flex-shrink: 0; padding-top: 3px; font: 10px/1.6 ui-monospace, monospace; color: #fbbf24;
+}
+
+.featured-method-steps h4 { font-size: 14px; font-weight: 600; color: #e4e4e7; }
+
+.featured-method-steps p, .featured-aside-copy, .featured-tools p {
+  max-width: 350px; font-size: 12px; line-height: 1.7; color: #a1a1aa;
+}
+
+.featured-method-steps p { margin-top: 5px; }
+.featured-aside-copy { margin-top: 14px; }
+.featured-tools { display: grid; gap: 15px; margin-top: 22px; }
+.featured-tools li { max-width: 350px; border-top: 1px solid #27272a; padding-top: 13px; }
+
+.featured-tools a {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  min-height: 26px; font-size: 13px; font-weight: 600; color: #e4e4e7;
+}
+
+.featured-tools a:hover { color: #fbbf24; }
+.featured-tools a svg { color: #71717a; }
+.featured-tools p { margin-top: 3px; font-size: 11px; line-height: 1.6; }
+
+.featured-aside-link {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 40px;
+  margin-top: 19px; font-size: 12px; font-weight: 500; color: #fbbf24;
+}
+
+.featured-aside-link:hover { color: #fde68a; }
+
+@media (min-width: 1280px) {
+  .featured-work-grid {
+    grid-template-columns: minmax(200px, 1fr) minmax(0, 760px) minmax(200px, 1fr);
+    grid-template-areas: "method demo source";
+    align-items: center; gap: clamp(24px, 2.6vw, 52px);
+  }
+  .featured-method, .featured-open-source { border-top: 0; padding-block: 12px; }
+  .featured-method { padding-right: clamp(0px, 1vw, 20px); }
+  .featured-open-source { padding-left: clamp(0px, 1vw, 20px); }
+}
+
+@media (max-width: 599px) {
+  .featured-work-section { padding-inline: 12px; padding-block: 36px 28px; }
+  .featured-work-heading { margin-bottom: 25px; }
+  .featured-work-heading > p:last-child { max-width: 320px; margin-inline: auto; font-size: 12px; }
+  .featured-work-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "demo" "method" "source"; gap: 26px; }
+  .featured-method, .featured-open-source { padding-top: 20px; }
+  .featured-method-steps { gap: 16px; margin-top: 20px; }
+  .featured-aside-title br { display: none; }
+  .featured-aside-title { font-size: 21px; }
+  .featured-aside-link { margin-top: 12px; }
+  .featured-tools { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+  .featured-tools a { font-size: 12px; gap: 5px; }
+  .featured-tools p { font-size: 10px; line-height: 1.6; }
+}

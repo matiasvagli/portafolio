@@ -1,0 +1,198 @@
+.project-notebook {
+  width: min(100%, 760px); margin-inline: auto;
+}
+
+.notebook-device {
+  position: relative; width: 100%; padding-inline: 22px; perspective: 1300px;
+}
+
+.notebook-lid {
+  position: relative; padding: 0 9px; border: 1px solid #52525b; border-bottom: 0;
+  border-radius: 18px 18px 2px 2px; background: linear-gradient(135deg, #28282d, #0b0b0e 65%);
+  box-shadow: 0 0 0 1px #000, inset 0 1px #ffffff18;
+  transform-origin: bottom center;
+}
+
+.notebook-camera {
+  display: flex; height: 18px; align-items: center; justify-content: center;
+}
+
+.notebook-camera span {
+  width: 4px; height: 4px; border-radius: 50%; background: #151921; box-shadow: inset 0 0 0 1px #ffffff14;
+}
+
+.notebook-screen {
+  position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 16 / 10;
+  border: 1px solid #08080a; border-radius: 4px; background: #0c1010;
+}
+
+.notebook-desktop {
+  position: absolute; inset: 0 0 29px; background: #101115;
+}
+
+.notebook-boot, .notebook-story {
+  position: absolute; inset: 0 0 29px; z-index: 1;
+  display: none; flex-direction: column; justify-content: center;
+  background: radial-gradient(ellipse at 50% 80%, #fbbf240a, transparent 70%), #0b0d10;
+}
+
+.notebook-boot {
+  align-items: center; padding: 24px; text-align: center;
+}
+
+.notebook-power {
+  width: 30px; height: 30px; margin-bottom: 20px; color: #fbbf24;
+}
+
+.notebook-boot-label, .notebook-story-label {
+  font: 10px/1.5 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: #71717a;
+}
+
+.notebook-boot h3 {
+  margin-top: 10px; font-size: clamp(17px, 2.6vw, 30px); font-weight: 600; letter-spacing: -.035em;
+  color: #f4f4f5;
+}
+
+.notebook-cursor { color: #fbbf24; }
+
+.notebook-load-track {
+  overflow: hidden; width: min(220px, 70%); height: 2px; margin-top: 24px; background: #27272a;
+}
+
+.notebook-load-track span {
+  display: block; width: 100%; height: 100%; transform: scaleX(0); transform-origin: left; background: #fbbf24;
+}
+
+.notebook-boot-detail {
+  margin-top: 13px; font: 9px/1.5 ui-monospace, monospace; color: #52525b;
+}
+
+.notebook-story { padding: clamp(20px, 5vw, 66px); }
+
+.notebook-story-label { color: #fbbf24; }
+
+.notebook-story h3 {
+  max-width: 550px; margin-top: 16px; font-size: clamp(20px, 3.2vw, 38px);
+  font-weight: 750; line-height: 1.12; letter-spacing: -.04em; color: #fafafa;
+}
+
+.notebook-story ul { display: grid; gap: 12px; margin-top: 25px; }
+
+.notebook-story li {
+  display: flex; align-items: start; gap: 10px; font-size: clamp(11px, 1.5vw, 15px);
+  line-height: 1.4; color: #a1a1aa;
+}
+
+.notebook-story li svg { width: 15px; height: 15px; flex-shrink: 0; color: #fbbf24; }
+
+.notebook-screen-bar {
+  position: absolute; inset: auto 0 0; z-index: 2; display: flex; align-items: center;
+  justify-content: space-between; gap: 12px; height: 29px; padding-inline: 12px;
+  border-top: 1px solid #ffffff0c; background: #15161a; font: 9px ui-monospace, monospace; color: #a1a1aa;
+}
+
+.notebook-case-name, .notebook-screen-bar a { display: inline-flex; align-items: center; gap: 7px; }
+.notebook-case-name i { width: 4px; height: 4px; border-radius: 50%; background: #34d399; }
+.notebook-screen-bar a { min-height: 25px; color: #fbbf24; }
+
+.notebook-chin {
+  display: flex; height: 22px; align-items: center; justify-content: center; gap: 7px;
+  font: 7px ui-monospace, monospace; letter-spacing: .14em; color: #52525b;
+}
+
+.notebook-chin span { color: #fbbf2455; }
+
+.notebook-base {
+  position: relative; height: 14px; margin-inline: -22px; border: 1px solid #52525b;
+  border-top-color: #a1a1aa; border-radius: 1px 1px 45% 45% / 1px 1px 90% 90%;
+  background: linear-gradient(#77777e, #3a3a41 35%, #1b1b20 80%); box-shadow: 0 3px 8px #0008;
+}
+
+.notebook-base span {
+  position: absolute; top: -1px; left: 42%; width: 16%; height: 5px;
+  border-radius: 0 0 7px 7px; background: #27272a; box-shadow: inset 0 -1px #ffffff18;
+}
+
+.notebook-shadow {
+  position: absolute; right: 3%; bottom: -13px; left: 3%; z-index: -1;
+  height: 25px; border-radius: 50%; background: #000a; filter: blur(12px);
+}
+
+.notebook-controls {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 24px;
+}
+
+.notebook-projects { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.notebook-projects button {
+  display: inline-flex; min-height: 38px; align-items: center; gap: 8px;
+  border: 1px solid #3f3f46; border-radius: 6px; padding: 7px 12px;
+  background: #111114; font-size: 12px; color: #a1a1aa; cursor: pointer;
+}
+
+.notebook-projects button span { font: 9px ui-monospace, monospace; color: #52525b; }
+.notebook-projects button[aria-pressed=true] { border-color: #fbbf2466; color: #fbbf24; }
+.notebook-projects button[aria-pressed=true] span { color: #fbbf2488; }
+.notebook-playback { display: flex; gap: 5px; }
+
+.notebook-playback button {
+  display: flex; width: 36px; height: 38px; align-items: center; justify-content: center;
+  border: 1px solid #27272a; border-radius: 6px; color: #a1a1aa; cursor: pointer;
+}
+
+.notebook-playback svg { width: 14px; height: 14px; }
+.notebook-playback button:hover { border-color: #fbbf2455; color: #fbbf24; }
+
+.notebook-ready[data-phase=boot] .notebook-boot,
+.notebook-ready[data-phase=story] .notebook-story { display: flex; }
+.notebook-ready[data-phase=boot] .notebook-desktop,
+.notebook-ready[data-phase=story] .notebook-desktop { visibility: hidden; }
+.notebook-started .notebook-lid { animation: notebook-open .85s cubic-bezier(.2,.8,.2,1) both; }
+.notebook-started[data-phase=boot] .notebook-load-track span { animation: notebook-load 1.8s ease-in-out both; }
+.notebook-ready[data-phase=story] .notebook-story { animation: notebook-story-in .35s ease-out both; }
+.notebook-ready[data-phase=result] .notebook-desktop { animation: notebook-reveal .45s cubic-bezier(.2,.8,.2,1) both; }
+.project-notebook[data-paused=true] .notebook-load-track span { animation-play-state: paused; }
+
+@keyframes notebook-open {
+  from { opacity: 0; transform: rotateX(-45deg); }
+  to { opacity: 1; transform: rotateX(0); }
+}
+
+@keyframes notebook-load { to { transform: scaleX(1); } }
+@keyframes notebook-story-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes notebook-reveal {
+  from { opacity: 0; transform: scale(1.045); filter: blur(5px); }
+  to { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+@media (max-width: 480px) {
+  .notebook-device { padding-inline: 10px; }
+  .notebook-lid { padding-inline: 5px; border-radius: 11px 11px 1px 1px; }
+  .notebook-camera { height: 11px; }
+  .notebook-chin { height: 14px; font-size: 5px; gap: 4px; }
+  .notebook-screen-bar { height: 23px; padding-inline: 7px; gap: 6px; font-size: 7px; }
+  .notebook-desktop, .notebook-boot, .notebook-story { bottom: 23px; }
+  .notebook-case-name, .notebook-screen-bar a { gap: 4px; }
+  .notebook-base { height: 9px; margin-inline: -10px; }
+  .notebook-base span { height: 3px; }
+  .notebook-boot { padding: 12px; }
+  .notebook-power { width: 20px; height: 20px; margin-bottom: 9px; }
+  .notebook-boot-label, .notebook-story-label { font-size: 8px; letter-spacing: .05em; }
+  .notebook-boot h3 { margin-top: 5px; font-size: 16px; line-height: 1.2; }
+  .notebook-load-track { margin-top: 13px; }
+  .notebook-boot-detail { margin-top: 8px; font-size: 7px; }
+  .notebook-story { padding: 13px; }
+  .notebook-story h3 { margin-top: 8px; font-size: 16px; }
+  .notebook-story ul { margin-top: 11px; gap: 6px; }
+  .notebook-story li { gap: 6px; font-size: 10px; }
+  .notebook-story li svg { width: 12px; height: 12px; }
+  .notebook-controls { margin-top: 18px; gap: 7px; }
+  .notebook-projects { gap: 5px; }
+  .notebook-projects button { min-height: 35px; gap: 5px; padding: 6px 8px; font-size: 10px; }
+  .notebook-playback { gap: 4px; }
+  .notebook-playback button { width: 30px; height: 35px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-notebook .notebook-lid, .project-notebook .notebook-desktop { animation: none; transform: none; }
+}

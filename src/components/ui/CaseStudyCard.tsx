@@ -23,10 +23,11 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
 
   return (
     <motion.article
+      id={study.id}
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="rounded-2xl border border-zinc-800 bg-[#111214] overflow-hidden"
+      className="scroll-mt-24 rounded-2xl border border-zinc-800 bg-[#111214] overflow-hidden"
     >
       <div className="p-6 sm:p-8 xl:p-10 space-y-8">
         {/* Cabecera */}

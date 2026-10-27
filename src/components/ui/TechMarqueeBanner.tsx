@@ -31,11 +31,12 @@ export default function TechMarqueeBanner() {
         {loopItems.map((tech, idx) => (
           <div
             key={`${tech.id}-${idx}`}
+            aria-hidden={idx >= stackLogos.length ? true : undefined}
             className="mx-2.5 flex items-center gap-3 px-3.5 py-1.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-amber-500/50 transition-colors shrink-0"
           >
             <img
               src={tech.icon}
-              alt={tech.name}
+              alt=""
               className="w-7 h-7 rounded-md object-contain shrink-0"
             />
             <div className="leading-tight">
