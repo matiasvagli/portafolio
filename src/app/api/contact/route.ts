@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { contactSubmissionSchema } from "@/schemas/contact.schema";
-import { getGoogleSheetsConfig, saveContactToSheets } from "@/lib/contact/google-sheets";
+import { ContactDeliveryError, getGoogleSheetsConfig, saveContactToSheets } from "@/lib/contact/google-sheets";
 
 export const runtime = "nodejs";
 
-// Public visitor endpoint. The Sheets credential stays on the server; input is
-// bounded and validated here and the receiver authenticates every write.
+// Public visitor endpoint. The webhook URL stays on the server; input is
+// bounded and validated both here and in the spreadsheet receiver.
 
 export async function POST(request: Request) {
   let rawBody: unknown;
@@ -51,7 +51,13 @@ export async function POST(request: Request) {
       },
       { status: 200 }
     );
-  } catch {
+  } catch (error) {
+    // Log only a controlled failure category, never the upstream response,
+    // credentials, submitted fields or arbitrary exception messages.
+    console.error("Contact delivery failed", {
+      code: error instanceof ContactDeliveryError ? error.code : "UPSTREAM_REQUEST_FAILED",
+      ...(error instanceof ContactDeliveryError ? { upstreamStatus: error.upstreamStatus } : {}),
+    });
     return NextResponse.json(
       {
         success: false,

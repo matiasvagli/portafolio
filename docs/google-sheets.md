@@ -1,57 +1,51 @@
 # Consultas en Google Sheets
 
-El servidor envía la consulta a un Apps Script, que agrega una fila a una planilla
-privada. Solo confirma el envío si el receptor devuelve el mismo ID.
-Sin configuración, el formulario ofrece WhatsApp y email y deshabilita el envío.
+La conexión sigue el mismo esquema que la landing de BitGoTe: un Apps Script
+vinculado a la planilla y una URL privada en Vercel. No necesita propiedades,
+token ni ID de planilla.
 
-## Preparar una planilla nueva
+## Conectar la planilla del portafolio
 
-1. Creá una planilla **Consultas del portafolio** y mantenela privada.
-2. Abrí **Extensiones → Apps Script** y pegá el contenido de
-   [`scripts/google-sheets-contact.gs`](../scripts/google-sheets-contact.gs).
-3. En **Configuración del proyecto → Propiedades de la secuencia de comandos**, agregá:
+1. Abrí la planilla donde querés recibir las consultas del portafolio.
+2. Entrá en **Extensiones → Apps Script** y pegá el contenido completo de
+   [`scripts/google-sheets-contact.gs`](../scripts/google-sheets-contact.gs). Guardá.
+3. Elegí **Implementar → Nueva implementación → Aplicación web**, con
+   **Ejecutar como: yo** y **Quién tiene acceso: cualquier persona**. Autorizá y
+   copiá la URL que termina en `/exec`.
+4. Configurá esa URL en Vercel, en la variable privada `GOOGLE_SHEETS_WEBHOOK_URL`,
+   y volvé a desplegar el sitio. No uses el prefijo `NEXT_PUBLIC_`.
 
-   | Propiedad | Valor |
-   | --- | --- |
-   | `SPREADSHEET_ID` | El ID entre `/d/` y `/edit` de la URL de la planilla. |
-   | `CONTACT_WEBHOOK_TOKEN` | Un secreto aleatorio de al menos 32 caracteres. |
+Si ya tenés una implementación del portafolio, podés editarla desde
+**Implementar → Administrar implementaciones → lápiz → Nueva versión → Implementar**.
+Eso conserva la URL existente. No reemplaces el script de BitGoTe: usá el proyecto
+vinculado a la planilla del portafolio.
 
-   Para generar el secreto localmente: `openssl rand -hex 32`. Guardalo en las
-   propiedades de Google y las variables privadas del servidor; nunca en Git.
-4. Elegí **Implementar → Nueva implementación → Aplicación web**.
-   Configurá **Ejecutar como: yo** y **Quién tiene acceso: cualquier persona**.
-   Autorizá el acceso a la planilla y copiá la URL publicada que termina en `/exec`.
+El script crea una pestaña **Consultas** con ID, Fecha UTC, Nombre, Email,
+Empresa, Tipo de proyecto y Mensaje. No modifica las otras pestañas ni envía correos.
+La planilla puede seguir privada. El receptor acepta escrituras sin token, igual
+que BitGoTe: quien conozca la URL puede enviar datos válidos. Mantenela solo en el
+servidor. La variable anterior `GOOGLE_SHEETS_WEBHOOK_TOKEN` ya no se utiliza.
 
-El script crea **Consultas** con ID, Fecha UTC, Nombre, Email, Empresa,
-Tipo de proyecto y Mensaje. La URL del receptor acepta solicitudes sin inicio
-de sesión, pero exige el secreto para cada escritura; no publica la planilla.
-No envía correos ni notificaciones.
-
-## Configurar el servidor
-
-Copiá `.env.example` a `.env.local` y completá:
+Para desarrollo local, agregá en `.env.local` y reiniciá el servidor:
 
 ```dotenv
 GOOGLE_SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/TU_IMPLEMENTACION/exec
-GOOGLE_SHEETS_WEBHOOK_TOKEN=EL_MISMO_SECRETO_DE_LAS_PROPIEDADES_DEL_SCRIPT
 ```
-
-Reiniciá el servidor. En el hosting, configurá estas mismas variables privadas y
-volvé a desplegar. Nunca uses `NEXT_PUBLIC_` para estos valores.
 
 ## Verificar
 
-1. Abrí `/contacto` y enviá una consulta de prueba.
-2. Comprobá la confirmación y la fila nueva en **Consultas**.
-3. Si hay un error, los campos se conservan. Reintentar sin modificar los datos
-   conserva el ID para evitar duplicados cuando el primer envío llegó pero se
-   perdió su respuesta.
+Abrí `/contacto`, enviá una consulta y comprobá la confirmación y la fila nueva
+en **Consultas**. Solo se muestra éxito si Google confirma el mismo ID.
+Si falla, los campos se conservan; reintentar sin modificarlos no duplica la fila.
 
-Los tests locales usan un receptor simulado. No verifican una implementación
-real de Google, sus permisos ni sus cuotas. El receptor escapa las celdas de
-los visitantes, serializa escrituras y no registra datos personales o secretos.
+Si Google devuelve **«No se encontró la función de la secuencia de comandos:
+doPost»**, falta publicar la versión que contiene el script. Guardar el código
+no actualiza la implementación: editá la implementación y elegí **Nueva versión**.
 
-Después de modificar Apps Script, actualizá la implementación a la nueva versión;
-guardar el archivo no actualiza por sí solo la URL publicada.
+Los logs del servidor distinguen respuesta inválida (`UPSTREAM_INVALID_RESPONSE`),
+rechazo HTTP (`UPSTREAM_HTTP_ERROR`), falta de confirmación (`STORAGE_NOT_CONFIRMED`)
+y red o timeout (`UPSTREAM_REQUEST_FAILED`). No incluyen datos personales ni la URL.
 
-Referencia: [documentación oficial de aplicaciones web de Apps Script](https://developers.google.com/apps-script/guides/web).
+Los tests locales usan un receptor simulado. Verifican validación, confirmación,
+escapado de fórmulas y reintentos; no verifican los permisos ni el despliegue real
+de Google.

@@ -26,7 +26,8 @@ y los filtros siguen ese orden.
 
 ## Contacto con Google Sheets
 
-El formulario requiere un receptor de Apps Script y dos variables privadas.
+El formulario usa Apps Script vinculado a la planilla, como la landing de BitGoTe.
+Solo requiere `GOOGLE_SHEETS_WEBHOOK_URL` en el servidor; no necesita token ni ID de planilla.
 Ver [la configuración](docs/google-sheets.md) y el [script receptor](scripts/google-sheets-contact.gs).
 Sin configuración, ofrece WhatsApp y email y mantiene el envío deshabilitado.
 
@@ -39,7 +40,7 @@ pnpm build
 ```
 
 Los tests usan el runner de Node 22 y verifican validación, confirmación de
-almacenamiento, errores del receptor, autenticación, celdas seguras y reintentos.
+almacenamiento, errores del receptor, celdas seguras y reintentos.
 
 ## 🚀 Levantar en desarrollo
 

@@ -1,5 +1,5 @@
-/** Paste into Extensions > Apps Script in the new, PRIVATE contact spreadsheet.
- * Set SPREADSHEET_ID and CONTACT_WEBHOOK_TOKEN in Script Properties.
+/** Paste into Extensions > Apps Script in the contact spreadsheet.
+ * Uses the bound spreadsheet, just like the BitGoTe landing receiver.
  * See docs/google-sheets.md for deployment and server configuration.
  */
 function doPost(event) {
@@ -14,12 +14,6 @@ function doPost(event) {
       return json({ success: false });
     }
     var payload = JSON.parse(event.postData.contents);
-    var properties = PropertiesService.getScriptProperties();
-    var expectedToken = properties.getProperty("CONTACT_WEBHOOK_TOKEN");
-    var spreadsheetId = properties.getProperty("SPREADSHEET_ID");
-    if (!expectedToken || expectedToken.length < 32 || !spreadsheetId || payload.token !== expectedToken) {
-      return json({ success: false });
-    }
 
     var types = ["arquitectura-backend", "erp-medida", "ia-mcp-rag", "auditoria-optimizacion", "otro"];
     function validText(value, min, max) {
@@ -38,7 +32,7 @@ function doPost(event) {
     lock = LockService.getScriptLock();
     if (!lock.tryLock(5000)) return json({ success: false });
 
-    var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = spreadsheet.getSheetByName("Consultas") || spreadsheet.insertSheet("Consultas");
     var lastRow = sheet.getLastRow();
     if (lastRow === 0) {
