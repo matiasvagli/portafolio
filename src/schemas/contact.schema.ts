@@ -1,6 +1,22 @@
 import { z } from "zod";
 
-export const contactFormSchema = z.object({
+export const contactTopics = [
+  "Web para mi negocio",
+  "Formulario de presupuesto a medida",
+  "Catálogo con carrito",
+  "Ventas por WhatsApp",
+  "Agente de IA para ventas",
+  "Automatizar WhatsApp o email",
+  "Seguimiento de pedidos",
+  "Sistema de gestión a medida",
+  "Facturación con ARCA y stock",
+  "Otra consulta",
+] as const;
+
+// Leave room for the subject in the existing Apps Script message field.
+export const commercialMessageLimit = 1900;
+
+const contactFields = z.object({
   nombre: z
     .string()
     .trim()
@@ -24,17 +40,26 @@ export const contactFormSchema = z.object({
     "auditoria-optimizacion",
     "otro",
   ]),
+  asunto: z.enum(contactTopics, { errorMap: () => ({ message: "Elegí un asunto de la lista." }) }).optional(),
   mensaje: z
     .string()
     .trim()
-    .min(15, "Contame un poco más del problema a resolver (mínimo 15 caracteres)")
-    .max(2000, "Máximo 2000 caracteres"),
+    .min(15, "Contame un poco más sobre lo que necesitás (mínimo 15 caracteres).")
+    .max(2000, "Usá hasta 2000 caracteres."),
 });
 
-export const contactSubmissionSchema = contactFormSchema.extend({
+function validateSubjectMessage({ asunto, mensaje }: z.infer<typeof contactFields>, ctx: z.RefinementCtx) {
+  if (asunto && mensaje.length > commercialMessageLimit) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["mensaje"], message: "Usá hasta 1900 caracteres." });
+  }
+}
+
+export const contactFormSchema = contactFields.superRefine(validateSubjectMessage);
+
+export const contactSubmissionSchema = contactFields.extend({
   submissionId: z.string().uuid(),
   website: z.string().max(0).optional(),
-});
+}).superRefine(validateSubjectMessage);
 
 export type ContactFormInput = z.infer<typeof contactFormSchema>;
 export type ContactSubmission = z.infer<typeof contactSubmissionSchema>;

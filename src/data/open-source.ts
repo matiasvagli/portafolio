@@ -134,31 +134,28 @@ RAG_VECTOR_STORE=pgvector
 
 export const productionLandings: ProductionLanding[] = [
   {
-    name: "Zona Urbana Publicidad",
-    niche: "Publicidad Exterior & Vía Pública (OOH)",
-    description:
-      "Presencia web comercial y catálogo de formatos publicitarios en vía pública para empresa de publicidad exterior, complementando el ecosistema operativo de Sistema Zona.",
-    impact: "Canal comercial activo en producción conectado con la operación de presupuestos.",
-    url: "https://www.zonaurbanapublicidad.com.ar/",
-    tech: ["Next.js", "Tailwind CSS", "SEO Local", "Optimización de Carga"],
-    image: "/proyectos/landings/landing-zona-urbana.jpg",
-  },
-  {
     name: "Coruja Casas Serranas",
-    niche: "Turismo & Alquiler Vacacional en Córdoba",
-    description:
-      "Plataforma web para alquiler de cabañas en las sierras con fichas visuales por propiedad, galería optimizada, ubicación en Google Maps y embudo directo a WhatsApp y Email.",
-    impact: "+300% en consultas online y reducción del 60% en tiempos de respuesta comercial.",
+    niche: "Turismo y alojamiento",
+    description: "Elegí una casa serrana en Córdoba o San Luis, mirá las fotos y consultá por tu estadía.",
+    impact: "Consulta directa desde la ficha de cada alojamiento.",
     url: "https://corujacasasserranas.com.ar/",
     tech: ["Next.js", "React SSR", "Tailwind CSS", "Vercel CDN"],
     image: "/proyectos/landings/landing-coruja.jpg",
   },
   {
+    name: "Zona Urbana Publicidad",
+    niche: "Publicidad en vía pública",
+    description: "Recorré los formatos publicitarios, mirá trabajos realizados y consultá por una ubicación.",
+    impact: "Catálogo de formatos y acceso a consultas comerciales.",
+    url: "https://www.zonaurbanapublicidad.com.ar/",
+    tech: ["Next.js", "Tailwind CSS", "SEO Local", "Optimización de Carga"],
+    image: "/proyectos/landings/landing-zona-urbana.jpg",
+  },
+  {
     name: "Futboliga",
-    niche: "Plataforma para Ligas y Equipos de Fútbol Amateur",
-    description:
-      "Landing y producto web mobile-first para organizar planteles, partidos, convocatorias, asistencia y tesorería de equipos y ligas amateurs.",
-    impact: "Producto SaaS respaldado por un monorepo NestJS + Prisma 7 + Zod.",
+    niche: "Fútbol amateur",
+    description: "Mirá las demos de una app para organizar partidos, convocar al equipo y confirmar quién va a jugar.",
+    impact: "Demostraciones del producto y lista de espera.",
     url: "https://landingfut.vercel.app/",
     tech: ["Next.js", "NestJS", "Prisma 7", "Zod", "Tailwind CSS"],
     image: "/proyectos/landings/landing-futboliga.jpg",

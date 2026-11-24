@@ -1,0 +1,44 @@
+Sol, rediseñá el portfolio de Matías Vagliviello en este repositorio Next.js. La portada tiene que servirle al dueño de un comercio que llega desde un primer contacto, muchas veces desde el celular. Tiene que reconocerse en una situación, ver cómo la resolvería Matías, comprobar qué trabajos ya hizo y poder escribirle. Usá primera persona y español rioplatense. El prompt de prospección explica cómo piensa Matías y es material interno.
+
+PORTADA
+
+Firma «Matías Vagliviello · Desarrollo freelance». Navegación «Qué puedo hacer», «Trabajos» y «Contacto».
+
+Título «Hacé que pedirte un presupuesto sea tan fácil como mandarte un mensaje».
+Bajada «Soy Matías. Hago webs, tiendas y automatizaciones para pequeños comercios. Contame cómo vendés hoy y vemos qué conviene resolver primero».
+Botones «Contame qué necesitás» y «Ver webs en vivo». El primero abre el WhatsApp de Matías con un borrador editable. El segundo baja a los trabajos.
+
+Al lado del título, mostrá una interacción que alguien pueda probar ahí mismo. Rótulo «Ejemplo de catálogo». Ficha de una mesa de madera con dos medidas a elección. Al tocar «Ver consulta», mostrar una burbuja que refleje la medida elegida, por ejemplo «Hola, quería consultar por la mesa de 140 × 80 cm. ¿La hacen en guatambú?». Mantener el ejemplo dentro de la página, con el botón de contacto real visualmente separado.
+
+SECCIÓN «¿Qué te gustaría resolver?»
+
+Presentá cinco opciones como pestañas accesibles en escritorio y acordeón en móvil. Al abrir una, mostrar una primera entrega concreta y una breve muestra del recorrido.
+
+• «Quiero que me encuentren y me consulten». Una landing con servicios, zona de atención, fotos y un botón para consultar por el servicio elegido.
+• «Vendo a medida». Un formulario que pida medidas, material y foto. Mostrar cómo recibiría el dueño esa solicitud ordenada por email.
+• «Quiero vender con carrito». Un catálogo con variantes, cantidades y resumen del pedido. El ejemplo permite agregar un artículo y ver el total. Acordar cobro y envío según cómo trabaje el comercio.
+• «Repito respuestas por WhatsApp». Mostrar un diálogo ilustrativo donde el asistente responde por el horario de retiro usando información aprobada por el comercio. Si preguntan por un pedido particular, ofrece pasarlo a una persona. Una variante por email muestra la confirmación que recibe quien completó un formulario. Etiquetar las muestras como ejemplos.
+• «Necesito saber en qué quedó cada pedido». Mostrar una lista sencilla con cliente, trabajo y estado. El primer alcance puede ser registrar pedidos y seguirlos de recibido a entregado.
+
+Cada opción cierra con «Consultar por esta solución» y prepara un mensaje específico para Matías. Ejemplo «Hola, Matías. Vendo muebles a medida y me interesa el formulario de presupuesto». Dejar que el visitante complete su rubro.
+
+SECCIÓN «Webs que podés recorrer»
+
+Reutilizá productionLandings en src/data/open-source.ts, sus capturas y sus destinos. Mostrar las tres fichas sin exigir que el visitante opere un carrusel. Texto sugerido, basado en el material del repositorio:
+
+Coruja Casas Serranas — Elegí una cabaña, mirá las fotos y encontrá dónde consultar por tu estadía.
+Zona Urbana Publicidad — Recorré los formatos que ofrece una empresa de publicidad en vía pública.
+Futboliga — Conocé una aplicación para organizar partidos, convocatorias y asistencia de un equipo.
+Botón por ficha «Visitar sitio». Mantener /landings accesible. Verificar los destinos antes de publicar y ajustar cada descripción a lo que pueda recorrerse. Usar casos y capturas reales sin atribuirles los ejemplos simulados ni prometer resultados comerciales.
+
+CIERRE
+
+Título «¿Cómo te llegan los pedidos hoy?».
+Texto «Pasame tu web, tu Instagram o contame cómo trabajás. Si veo algo que puedo resolver, te propongo una primera entrega con alcance y precio para que decidas».
+Acciones «Escribirme por WhatsApp» y «Prefiero el formulario». Reutilizá profileData y /contacto. Revisá asunto, etiquetas, validación y confirmación del formulario para que sirva a un comerciante. Conservar el envío existente.
+
+DIRECCIÓN VISUAL Y ENTREGA
+
+Usá fondo marfil, texto carbón y un azul intenso para acciones. Tipografía legible, títulos grandes y aire entre bloques. Dar protagonismo a interfaces que se puedan leer y tocar. En móvil, poner el CTA antes de la muestra y aprovechar el ancho para las capturas. Llevar CV, stack y open source al pie como información secundaria. Revisar navegación global, metadatos y textos compartidos para que la entrada comercial sea coherente. Conservar las rutas existentes.
+
+Probar a 360 px y en escritorio. Recorrer el ejemplo cambiando la medida, operar los controles con teclado, revisar los mensajes preparados y verificar que el formulario conserve su tratamiento de errores. Ejecutar los chequeos disponibles del proyecto. Entregar el rediseño con un resumen de cambios y verificaciones.

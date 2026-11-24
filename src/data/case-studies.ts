@@ -11,6 +11,8 @@ export interface ArchitectureNode {
 
 export interface CaseStudy {
   id: string;
+  shortTitle: string;
+  overview: string;
   badge: string;
   title: string;
   clientType: string;
@@ -39,9 +41,11 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     id: "futboliga",
+    shortTitle: "Futboliga",
+    overview: "Armé una app para organizar planteles, convocar a los partidos y saber quién confirmó. Las ligas también pueden gestionar torneos, resultados y tablas de posiciones.",
     badge: "CASO DE ESTUDIO #01 · APP PARA FÚTBOL AMATEUR",
     title: "Futboliga — Administración de Ligas y Equipos",
-    clientType: "Equipos amateurs, cuerpos técnicos y organizadores de ligas",
+    clientType: "Equipos y ligas de fútbol amateur",
     subtitle:
       "Una app para organizar planteles, partidos y convocatorias, y administrar ligas con torneos, fixture y resultados. Cada equipo puede funcionar con o sin liga.",
     accentColor: "emerald",
@@ -101,9 +105,11 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "sistema-zona",
+    shortTitle: "Sistema Zona",
+    overview: "Pasé una operación repartida en planillas a un sistema que conecta presupuestos, órdenes de trabajo, facturación electrónica con ARCA y caja.",
     badge: "CASO DE ESTUDIO #02 · ERP EN PRODUCCIÓN",
     title: "Sistema Zona — ERP Integral OOH",
-    clientType: "Empresa de Publicidad en Vía Pública (Múltiples Unidades de Negocio)",
+    clientType: "Publicidad en vía pública",
     subtitle:
       "De planillas Excel desconectadas a un ERP en tiempo real con 13 módulos operativos, facturación electrónica ARCA, WebSockets con Redis y motor financiero.",
     accentColor: "violet",
@@ -190,9 +196,11 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "arquitectura-nestjs-prisma",
+    shortTitle: "Plataformas y billetera digital",
+    overview: "Diseñé cómo se guardan las reglas y los movimientos de dinero en sistemas que necesitan evitar duplicados y responder bien a medida que crece el volumen de datos.",
     badge: "CASO DE ESTUDIO #03 · DDD ESTRICTO CON NESTJS, PRISMA & TRANSACCIONES",
     title: "Plataformas SaaS & Billetera Distribuida (Futboliga / Wallet v2)",
-    clientType: "Arquitectura Hexagonal, Modelado Relacional y Consistencia Financiera",
+    clientType: "Arquitectura de sistemas",
     subtitle:
       "Cómo diseño sistemas en el ecosistema TypeScript (NestJS + Prisma / TypeORM + PostgreSQL + Zod) donde las reglas de negocio viven aisladas del framework y la performance se defiende con tests automáticos.",
     accentColor: "emerald",
@@ -273,9 +281,11 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "huevo-de-oro",
+    shortTitle: "Huevo de Oro",
+    overview: "Conecté el stock y la caja con los pedidos que toman los vendedores en la calle. El depósito valida la entrega con QR y el dueño puede consultar los datos con un asistente de IA local.",
     badge: "CASO DE ESTUDIO #04 · MAYORISTA WEB + MOBILE + IA LOCAL",
     title: "Huevo de Oro — Ecosistema Mayorista & Distribución",
-    clientType: "Distribuidora Mayorista Avícola (Galpón, Caja, Reparto y Ventas en Calle)",
+    clientType: "Distribución mayorista",
     subtitle:
       "Digitalización total de un mayorista: ERP web de inventario multidimensional y caja por turnos + App Móvil en React Native con despacho por QR + Asistente de IA local on-premise.",
     accentColor: "amber",

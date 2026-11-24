@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useId, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ImageLightboxProps {
@@ -12,72 +12,39 @@ interface ImageLightboxProps {
   onNext: () => void;
 }
 
-export default function ImageLightbox({
-  images,
-  currentIndex,
-  title,
-  onClose,
-  onPrev,
-  onNext,
-}: ImageLightboxProps) {
-  if (currentIndex === null || !images[currentIndex]) return null;
+export default function ImageLightbox({ images, currentIndex, title, onClose, onPrev, onNext }: ImageLightboxProps) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
+  const open = currentIndex !== null;
+
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element) return;
+    if (open && !element.open) element.showModal();
+    if (!open && element.open) element.close();
+  }, [open]);
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-        className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4"
-      >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className="relative max-w-5xl w-full bg-zinc-950 border border-white/15 rounded-2xl overflow-hidden shadow-2xl"
-        >
-          <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-zinc-900/60">
-            <span className="text-xs font-mono text-zinc-300">
-              {title} — Captura {currentIndex + 1} de {images.length}
-            </span>
-            <button
-              type="button"
-              onClick={onClose}
-              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="relative bg-black flex items-center justify-center min-h-[320px] max-h-[75vh] p-4">
-            <img
-              src={images[currentIndex]}
-              alt={`${title} captura ${currentIndex + 1}`}
-              className="max-h-[70vh] w-auto object-contain rounded-lg"
-            />
-
-            {images.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={onPrev}
-                  className="absolute left-4 p-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 border border-white/15 text-white"
-                  aria-label="Anterior"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={onNext}
-                  className="absolute right-4 p-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 border border-white/15 text-white"
-                  aria-label="Siguiente"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </>
-            )}
-          </div>
+    <dialog ref={dialog} className="case-gallery" aria-labelledby={titleId} onClose={onClose}
+      onClick={event => { if (event.target === event.currentTarget) event.currentTarget.close(); }}
+      onKeyDown={event => {
+        if (images.length < 2) return;
+        if (event.key === "ArrowLeft") onPrev();
+        if (event.key === "ArrowRight") onNext();
+      }}>
+      {currentIndex !== null && <div className="gallery-inner">
+        <header className="gallery-header">
+          <div><h3 id={titleId}>{title}</h3><p aria-live="polite">Captura {currentIndex + 1} de {images.length}</p></div>
+          <button type="button" aria-label="Cerrar capturas" onClick={() => dialog.current?.close()}><X size={22} aria-hidden="true" /></button>
+        </header>
+        <div className="gallery-image">
+          <img src={images[currentIndex]} alt={`Captura ${currentIndex + 1} de ${title}`} />
         </div>
-      </motion.div>
-    </AnimatePresence>
+        {images.length > 1 && <div className="gallery-controls">
+          <button type="button" onClick={onPrev}><ChevronLeft size={17} aria-hidden="true" /> Anterior</button>
+          <button type="button" onClick={onNext}>Siguiente <ChevronRight size={17} aria-hidden="true" /></button>
+        </div>}
+      </div>}
+    </dialog>
   );
 }

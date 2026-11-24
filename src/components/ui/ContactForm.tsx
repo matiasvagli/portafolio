@@ -3,11 +3,11 @@
 import { useRef, useState } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 import { z } from "zod";
-import { contactFormSchema, type ContactFormInput } from "@/schemas/contact.schema";
+import { commercialMessageLimit, contactFormSchema, contactTopics, type ContactFormInput } from "@/schemas/contact.schema";
 import { profileData } from "@/data/profile";
+import { firstContactUrl } from "@/lib/whatsapp";
 
-const emptyForm: ContactFormInput = { nombre: "", email: "", empresa: "", tipoProyecto: "arquitectura-backend", mensaje: "" };
-const inputClass = "w-full min-w-0 rounded-lg border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 disabled:opacity-60";
+const emptyForm: ContactFormInput = { nombre: "", email: "", empresa: "", tipoProyecto: "otro", mensaje: "" };
 
 export default function ContactForm({ available }: { available: boolean }) {
   const [form, setForm] = useState<ContactFormInput>(emptyForm);
@@ -23,6 +23,15 @@ export default function ContactForm({ available }: { available: boolean }) {
     submissionId.current = null;
   }
 
+  function fieldError(name: keyof ContactFormInput) {
+    const message = errors[name];
+    return message && <p className="contact-field-error" id={`contact-${name}-error`}>{message}</p>;
+  }
+
+  function fieldAccessibility(name: keyof ContactFormInput) {
+    return { "aria-invalid": !!errors[name], "aria-describedby": errors[name] ? `contact-${name}-error` : undefined };
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!available || status === "sending") return;
@@ -30,10 +39,13 @@ export default function ContactForm({ available }: { available: boolean }) {
     setStatus("idle");
     const parsed = contactFormSchema.safeParse(form);
     if (!parsed.success) {
-      const fields = parsed.error.flatten().fieldErrors;
-      setErrors(Object.fromEntries(Object.entries(fields).map(([key, messages]) => [key, messages?.[0]])));
+      const fields = Object.entries(parsed.error.flatten().fieldErrors);
+      setErrors(Object.fromEntries(fields.map(([key, messages]) => [key, messages?.[0]])));
+      const invalidField = event.currentTarget.elements.namedItem(fields[0][0]);
+      if (invalidField instanceof HTMLElement) requestAnimationFrame(() => invalidField.focus());
       return;
     }
+
     submissionId.current ??= crypto.randomUUID();
     const currentId = submissionId.current;
     setStatus("sending");
@@ -53,27 +65,53 @@ export default function ContactForm({ available }: { available: boolean }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate aria-busy={status === "sending"} className="min-w-0 rounded-2xl border border-zinc-800 bg-[#111214] p-5 sm:p-8">
-      <h2 className="text-xl font-semibold">Hablemos de tu proyecto</h2>
-      <p className="mt-2 text-sm leading-relaxed text-zinc-400">Dejame los detalles y tu email para que pueda responderte.</p>
-      {!available && <div role="status" className="mt-5 rounded-lg border border-amber-400/20 bg-amber-400/5 p-4 text-sm leading-relaxed text-zinc-300">Por ahora recibo consultas por <a href={profileData.whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-amber-300 underline underline-offset-4">WhatsApp</a> o <a href={`mailto:${profileData.email}`} className="font-medium text-amber-300 underline underline-offset-4">email</a>. Podés escribirme directamente.</div>}
-      <fieldset disabled={!available || status === "sending"} className="mt-6 min-w-0 space-y-5">
+    <form onSubmit={handleSubmit} noValidate aria-busy={status === "sending"} className="contact-form">
+      <h2>Mandame tu consulta</h2>
+      <p>Dejame tu email y contame qué te gustaría resolver. Los campos con * son obligatorios.</p>
+      {!available && <div role="status" className="contact-notice">Por ahora recibo consultas por <a href={firstContactUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a> o <a href={`mailto:${profileData.email}`}>email</a>.</div>}
+      <fieldset disabled={!available || status === "sending"}>
         <legend className="sr-only">Datos de tu consulta</legend>
-        <div className="grid min-w-0 gap-5 sm:grid-cols-2">
-          <div className="min-w-0"><label htmlFor="contact-name" className="mb-2 block text-xs text-zinc-300">Tu nombre *</label><input id="contact-name" name="nombre" autoComplete="name" required maxLength={80} value={form.nombre} onChange={event => updateField("nombre", event.target.value)} placeholder="¿Cómo te llamás?" aria-invalid={!!errors.nombre} aria-describedby={errors.nombre ? "contact-name-error" : undefined} className={inputClass} />{errors.nombre && <p id="contact-name-error" className="mt-1.5 text-xs text-amber-300">{errors.nombre}</p>}</div>
-          <div className="min-w-0"><label htmlFor="contact-email" className="mb-2 block text-xs text-zinc-300">Tu email *</label><input id="contact-email" name="email" type="email" autoComplete="email" required maxLength={120} value={form.email} onChange={event => updateField("email", event.target.value)} placeholder="vos@empresa.com" aria-invalid={!!errors.email} aria-describedby={errors.email ? "contact-email-error" : undefined} className={inputClass} />{errors.email && <p id="contact-email-error" className="mt-1.5 text-xs text-amber-300">{errors.email}</p>}</div>
+        <div className="contact-form-grid">
+          <div className="contact-field">
+            <label htmlFor="contact-name">Tu nombre *</label>
+            <input id="contact-name" name="nombre" autoComplete="name" required maxLength={80} value={form.nombre} onChange={event => updateField("nombre", event.target.value)} {...fieldAccessibility("nombre")} />
+            {fieldError("nombre")}
+          </div>
+          <div className="contact-field">
+            <label htmlFor="contact-email">Tu email *</label>
+            <input id="contact-email" name="email" type="email" autoComplete="email" required maxLength={120} value={form.email} onChange={event => updateField("email", event.target.value)} {...fieldAccessibility("email")} />
+            {fieldError("email")}
+          </div>
         </div>
-        <div className="min-w-0"><label htmlFor="contact-company" className="mb-2 block text-xs text-zinc-300">Empresa o equipo (opcional)</label><input id="contact-company" name="empresa" autoComplete="organization" maxLength={100} value={form.empresa ?? ""} onChange={event => updateField("empresa", event.target.value)} placeholder="Nombre de tu empresa" className={inputClass} />{errors.empresa && <p className="mt-1.5 text-xs text-amber-300">{errors.empresa}</p>}</div>
-        <div className="min-w-0"><label htmlFor="contact-type" className="mb-2 block text-xs text-zinc-300">¿Qué necesitás resolver?</label><select id="contact-type" name="tipoProyecto" value={form.tipoProyecto} onChange={event => updateField("tipoProyecto", event.target.value as ContactFormInput["tipoProyecto"])} className={inputClass}><option value="arquitectura-backend">Backend o arquitectura</option><option value="erp-medida">Sistema o ERP a medida</option><option value="ia-mcp-rag">Integración de IA</option><option value="auditoria-optimizacion">Auditoría u optimización</option><option value="otro">Propuesta laboral u otro</option></select></div>
-        <div><label htmlFor="contact-message" className="mb-2 block text-xs text-zinc-300">Contame el problema o contexto *</label><textarea id="contact-message" name="mensaje" required rows={5} minLength={15} maxLength={2000} value={form.mensaje} onChange={event => updateField("mensaje", event.target.value)} placeholder="¿Qué querés construir o qué se está trabando hoy?" aria-invalid={!!errors.mensaje} aria-describedby={errors.mensaje ? "contact-message-error" : undefined} className={inputClass} />{errors.mensaje && <p id="contact-message-error" className="mt-1.5 text-xs text-amber-300">{errors.mensaje}</p>}</div>
+        <div className="contact-field">
+          <label htmlFor="contact-company">Nombre de tu negocio (opcional)</label>
+          <input id="contact-company" name="empresa" autoComplete="organization" maxLength={100} value={form.empresa ?? ""} onChange={event => updateField("empresa", event.target.value)} {...fieldAccessibility("empresa")} />
+          {fieldError("empresa")}
+        </div>
+        <div className="contact-field">
+          <label htmlFor="contact-topic">Asunto (opcional)</label>
+          <select id="contact-topic" name="asunto" value={form.asunto ?? ""} onChange={event => updateField("asunto", (event.target.value || undefined) as ContactFormInput["asunto"])} {...fieldAccessibility("asunto")}>
+            <option value="">Elegí un tema</option>
+            {contactTopics.map(topic => <option key={topic}>{topic}</option>)}
+          </select>
+          {fieldError("asunto")}
+        </div>
+        <div className="contact-field">
+          <label htmlFor="contact-message">¿Qué te gustaría resolver? *</label>
+          <textarea id="contact-message" name="mensaje" required rows={5} minLength={15} maxLength={commercialMessageLimit} value={form.mensaje} onChange={event => updateField("mensaje", event.target.value)} placeholder="Por ejemplo, vendo por Instagram y quiero que mis clientes puedan armar el pedido antes de escribirme." {...fieldAccessibility("mensaje")} />
+          {fieldError("mensaje")}
+        </div>
         <div className="absolute -left-[10000px]" aria-hidden="true"><label htmlFor="contact-website">Website</label><input id="contact-website" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={event => setWebsite(event.target.value)} /></div>
-        <p className="text-xs leading-relaxed text-zinc-500">Uso estos datos únicamente para responder tu consulta.</p>
-        <button type="submit" disabled={!available || status === "sending"} className="button-primary disabled:cursor-not-allowed disabled:opacity-40"><Send className="h-4 w-4" />{status === "sending" ? "Enviando…" : "Enviar consulta"}</button>
+        <p className="contact-privacy">Uso estos datos para responder tu consulta.</p>
+        <button type="submit" disabled={!available || status === "sending"} className="commercial-button"><Send size={17} aria-hidden="true" />{status === "sending" ? "Enviando…" : "Enviar consulta"}</button>
       </fieldset>
-      <div aria-live="polite" className="mt-4">
-        {status === "sent" && <p className="flex items-start gap-2 text-sm text-emerald-300"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />Tu consulta quedó guardada. Te respondo al email que dejaste.</p>}
-        {status === "error" && <div role="alert" className="rounded-lg border border-amber-400/30 bg-amber-400/5 p-4 text-sm leading-relaxed text-zinc-300"><p className="flex items-start gap-2"><AlertCircle className="mt-1 h-4 w-4 shrink-0 text-amber-300" />No pudimos confirmar el envío. Tus datos siguen acá para que puedas reintentar.</p><p className="mt-2">También podés <a href={profileData.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-amber-300 underline underline-offset-4">escribirme por WhatsApp</a> o <a href={`mailto:${profileData.email}`} className="text-amber-300 underline underline-offset-4">email</a>.</p></div>}
+      <div role="status">
+        {status === "sent" && <div className="contact-notice contact-notice--success"><p><CheckCircle2 size={17} aria-hidden="true" /> Recibí tu consulta. Te respondo al email que me dejaste.</p></div>}
       </div>
+      {status === "error" && <div role="alert" className="contact-notice contact-notice--error">
+        <p><AlertCircle size={17} aria-hidden="true" /> El envío quedó sin confirmar. Tus datos siguen acá y podés volver a intentar.</p>
+        <p>También podés escribirme por <a href={firstContactUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a> o <a href={`mailto:${profileData.email}`}>email</a>.</p>
+      </div>}
     </form>
   );
 }

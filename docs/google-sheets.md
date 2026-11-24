@@ -1,51 +1,59 @@
-# Consultas en Google Sheets
+# Consultas en Google Sheets y avisos por email
 
-La conexión sigue el mismo esquema que la landing de BitGoTe: un Apps Script
-vinculado a la planilla y una URL privada en Vercel. No necesita propiedades,
-token ni ID de planilla.
+El formulario guarda cada consulta en la pestaña **Consultas**. Los avisos por
+Gmail se envían desde Apps Script cada cinco minutos y el guardado se confirma
+por separado. Si llegan varias consultas, el aviso incluye todas las que
+procesó en ese intervalo.
 
-## Conectar la planilla del portafolio
+## Activar en la planilla del portfolio
 
-1. Abrí la planilla donde querés recibir las consultas del portafolio.
-2. Entrá en **Extensiones → Apps Script** y pegá el contenido completo de
-   [`scripts/google-sheets-contact.gs`](../scripts/google-sheets-contact.gs). Guardá.
-3. Elegí **Implementar → Nueva implementación → Aplicación web**, con
-   **Ejecutar como: yo** y **Quién tiene acceso: cualquier persona**. Autorizá y
-   copiá la URL que termina en `/exec`.
-4. Configurá esa URL en Vercel, en la variable privada `GOOGLE_SHEETS_WEBHOOK_URL`,
-   y volvé a desplegar el sitio. No uses el prefijo `NEXT_PUBLIC_`.
+1. Abrí la planilla del portfolio y entrá en **Extensiones → Apps Script**.
+   Pegá y guardá el contenido de [google-sheets-contact.gs](../scripts/google-sheets-contact.gs).
+2. Elegí **configurarContacto** en el selector de funciones, hacé clic en
+   **Ejecutar** y autorizá Sheets y el envío de correo con tu cuenta de Google.
+   Esto registra la planilla y crea el activador de avisos. Podés repetirlo sin
+   crear otro activador desde la misma cuenta.
+3. Si ya hay una aplicación web, entrá en **Implementar → Administrar
+   implementaciones**, editá la existente, elegí **Nueva versión** e
+   implementala. La URL que ya usa Vercel sigue siendo la misma.
+4. Si es una planilla nueva, elegí **Implementar → Nueva implementación →
+   Aplicación web**, con **Ejecutar como: yo** y **Quién tiene acceso:
+   cualquier persona**. Copiá la URL que termina en `/exec`, configurala en la
+   variable privada `GOOGLE_SHEETS_WEBHOOK_URL` de Vercel y volvé a desplegar.
 
-Si ya tenés una implementación del portafolio, podés editarla desde
-**Implementar → Administrar implementaciones → lápiz → Nueva versión → Implementar**.
-Eso conserva la URL existente. No reemplaces el script de BitGoTe: usá el proyecto
-vinculado a la planilla del portafolio.
+Usá el proyecto de Apps Script asociado a la planilla del portfolio. La
+planilla puede seguir privada. Mantené la URL del webhook en el servidor y
+usá la variable sin el prefijo `NEXT_PUBLIC_`.
 
-El script crea una pestaña **Consultas** con ID, Fecha UTC, Nombre, Email,
-Empresa, Tipo de proyecto y Mensaje. No modifica las otras pestañas ni envía correos.
-La planilla puede seguir privada. El receptor acepta escrituras sin token, igual
-que BitGoTe: quien conozca la URL puede enviar datos válidos. Mantenela solo en el
-servidor. La variable anterior `GOOGLE_SHEETS_WEBHOOK_TOKEN` ya no se utiliza.
+Los avisos van a **vaglimatias@gmail.com**. Si querés usar otra dirección, agregá
+`CONTACT_NOTIFICATION_EMAIL` en **Configuración del proyecto → Propiedades de la
+secuencia de comandos**. Al responder a un aviso de una sola consulta, el
+destinatario de la respuesta es el email que dejó el visitante. Los avisos
+agrupados incluyen cada dirección en el cuerpo.
 
-Para desarrollo local, agregá en `.env.local` y reiniciá el servidor:
+La columna **Aviso enviado UTC** registra qué consultas ya se notificaron.
+El activador toma las consultas recibidas desde la primera configuración. Si el
+correo falla o se agota el cupo de Gmail, la consulta sigue en la planilla y el
+activador vuelve a intentar el aviso en una ejecución posterior.
+
+## Verificar
+
+Enviá una consulta de prueba desde `/contacto` y buscá la fila nueva en
+**Consultas**. Dentro del ciclo del activador, revisá que llegue un aviso a
+Gmail y se complete **Aviso enviado UTC**. El formulario confirma el guardado
+cuando Google responde con el ID de la consulta. Si falla, conserva los campos
+para reintentar con el mismo ID.
+
+Si Google devuelve **«No se encontró la función de la secuencia de comandos:
+doPost»**, publicá una nueva versión de la implementación existente. Si el
+guardado funciona y falta el correo, revisá **Activadores** y **Ejecuciones**
+en Apps Script para confirmar que `enviarAvisosDeContacto` esté autorizado.
+
+Para habilitar el formulario en desarrollo, agregá la URL de tu receptor de
+prueba a `.env.local` y reiniciá el servidor.
 
 ```dotenv
 GOOGLE_SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/TU_IMPLEMENTACION/exec
 ```
 
-## Verificar
-
-Abrí `/contacto`, enviá una consulta y comprobá la confirmación y la fila nueva
-en **Consultas**. Solo se muestra éxito si Google confirma el mismo ID.
-Si falla, los campos se conservan; reintentar sin modificarlos no duplica la fila.
-
-Si Google devuelve **«No se encontró la función de la secuencia de comandos:
-doPost»**, falta publicar la versión que contiene el script. Guardar el código
-no actualiza la implementación: editá la implementación y elegí **Nueva versión**.
-
-Los logs del servidor distinguen respuesta inválida (`UPSTREAM_INVALID_RESPONSE`),
-rechazo HTTP (`UPSTREAM_HTTP_ERROR`), falta de confirmación (`STORAGE_NOT_CONFIRMED`)
-y red o timeout (`UPSTREAM_REQUEST_FAILED`). No incluyen datos personales ni la URL.
-
-Los tests locales usan un receptor simulado. Verifican validación, confirmación,
-escapado de fórmulas y reintentos; no verifican los permisos ni el despliegue real
-de Google.
+Los tests locales simulan Apps Script, la planilla y el envío de correo.

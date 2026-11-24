@@ -27,7 +27,7 @@ export const profileData = {
   whatsappUrl: "https://wa.me/5491168465477?text=Hola%20Mat%C3%ADas%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20un%20proyecto",
   githubUrl: "https://github.com/matiasvagli",
   linkedinUrl: "https://www.linkedin.com/in/matias-vagliviello-07403736b",
-  avatar: "/personal/p3.jpg",
+  avatar: "/personal/matias-vagliviello.webp",
   manifesto: [
     "Tengo 42 años, calle de negocio real y estoy 100% vigente en la ingeniería de software actual.",
     "No escribo código por deporte ni meto capas 'por si acaso': primero entiendo dónde pierde plata, tiempo o control una operación, y después diseño el modelo de datos, el dominio y la infraestructura exacta que lo resuelve.",

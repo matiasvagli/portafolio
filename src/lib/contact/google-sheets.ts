@@ -42,7 +42,9 @@ export async function saveContactToSheets(
       email: submission.email,
       empresa: submission.empresa ?? "",
       tipoProyecto: submission.tipoProyecto,
-      mensaje: submission.mensaje,
+      mensaje: submission.asunto
+        ? `Asunto: ${submission.asunto}\n\n${submission.mensaje}`
+        : submission.mensaje,
     }),
     signal: AbortSignal.timeout(12000),
     redirect: "follow",

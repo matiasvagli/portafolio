@@ -1,26 +1,30 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@/components/commercial/commercial.css";
+import "@/components/commercial/catalog.css";
+import "@/components/commercial/catalog-phone.css";
+import "@/components/commercial/solutions.css";
+import "@/components/commercial/sales-previews.css";
+import "@/components/commercial/landing-previews.css";
+import "@/components/commercial/contact.css";
+import "@/components/commercial/portfolio-pages.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import TechMarqueeBanner from "@/components/ui/TechMarqueeBanner";
 
 export const metadata: Metadata = {
-  title: "Matías Vagliviello — Backend, ERPs y sistemas a medida",
-  description:
-    "Desarrollo backends, ERPs y aplicaciones que conectan operaciones reales. Conocé mis últimos trabajos: Sistema Zona, Futboliga y herramientas open source.",
+  title: {
+    default: "Matías Vagliviello | Webs, sistemas y agentes de IA para comercios",
+    template: "%s | Matías Vagliviello",
+  },
+  description: "Desarrollo webs, tiendas y sistemas a medida. Integro ventas por WhatsApp, agentes de IA, stock y facturación electrónica con ARCA.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className="dark">
+    <html lang="es-AR" className="dark">
       <body className="min-h-screen flex flex-col bg-[#0a0a0b] text-zinc-100 antialiased selection:bg-amber-500/25 selection:text-amber-200 bg-engineering-grid">
         <Navbar />
-        <TechMarqueeBanner />
-        <main id="contenido" className="min-w-0 flex-1">{children}</main>
+        <main id="contenido" tabIndex={-1} className="min-w-0 flex-1">{children}</main>
         <Footer />
       </body>
     </html>
