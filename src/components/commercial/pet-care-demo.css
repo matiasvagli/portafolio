@@ -1,0 +1,79 @@
+.pet-demo {
+  --pet-ink: #183e3b;
+  --pet-teal: #17635c;
+  --pet-muted: #46635e;
+  --pet-paper: #fbfdfa;
+  min-width: 0;
+  padding: clamp(.65rem, 3cqw, 1.55rem);
+  border: 1px solid #cddfd6;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 54% 95%, #c5dfd6, #ebf3ec 69%);
+  color: var(--pet-ink);
+}
+.pet-phones { display: grid; justify-content: center; grid-template-columns: repeat(2, minmax(0, 305px)); gap: clamp(.75rem, 4.5cqw, 3rem); }
+.pet-phone {
+  display: flex; flex-direction: column; overflow: hidden; min-width: 0;
+  border: 6px solid #192a28; border-radius: 25px; background: var(--pet-paper);
+  box-shadow: 0 12px 25px -9px #203e3c80;
+}
+.pet-screen-selector { display: none; }
+.pet-brand, .pet-appointment { display: flex; align-items: center; gap: .55rem; padding: .63rem .8rem; }
+.pet-brand { border-bottom: 1px solid #e0e9e2; font-size: 1.24rem; font-weight: 800; letter-spacing: -.055em; }
+.pet-brand > span, .pet-appointment-icon { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 9px; }
+.pet-brand > span { color: #fff; background: var(--pet-teal); }
+.pet-home-content { padding: .78rem; }
+.pet-home-content h4 { font-size: clamp(1.15rem, 5cqw, 1.55rem); font-weight: 800; line-height: 1.07; letter-spacing: -.055em; }
+.pet-consultation-link {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .52rem;
+  width: 100%; margin-top: .7rem; padding: .74rem .59rem; border-radius: 9px;
+  background: var(--pet-teal); color: #fff; text-align: left; cursor: pointer;
+}
+.pet-consultation-link:hover { background: #114d47; }
+.pet-consultation-link strong, .pet-consultation-link small { display: block; }
+.pet-consultation-link strong { font-size: .79rem; font-weight: 800; line-height: 1.22; }
+.pet-consultation-link small { margin-top: .18rem; color: #d3efe6; font-size: .68rem; }
+.pet-home-content h5 { margin-block: .86rem .48rem; font-size: .83rem; font-weight: 800; }
+.pet-categories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem; }
+.pet-categories button {
+  display: flex; align-items: center; gap: .35rem; min-height: 45px; padding: .35rem .45rem;
+  border: 1px solid transparent; border-radius: 7px; background: var(--category-bg); color: var(--category-ink);
+  font-size: .69rem; font-weight: 800; text-align: left; cursor: pointer;
+}
+.pet-categories [data-color="mint"] { --category-bg: #e2f2e9; --category-ink: #1b6251; }
+.pet-categories [data-color="lilac"] { --category-bg: #eeeafb; --category-ink: #574482; }
+.pet-categories [data-color="sand"] { --category-bg: #fbefd9; --category-ink: #764a19; }
+.pet-categories [data-color="rose"] { --category-bg: #f9e6e5; --category-ink: #823e46; }
+.pet-categories button:is(:hover, [aria-pressed="true"]) { border-color: currentColor; }
+.pet-categories svg { flex: none; }
+.pet-category-detail { margin-top: .55rem; padding: .55rem .6rem; border-radius: 7px; background: #eef3ed; color: var(--pet-muted); font-size: .72rem; line-height: 1.35; }
+.pet-appointment { background: var(--pet-teal); color: #fff; }
+.pet-appointment-icon { background: #ffffff28; }
+.pet-appointment h4 { font-size: .91rem; font-weight: 800; line-height: 1.22; }
+.pet-appointment p { margin-top: .12rem; color: #d3efe6; font-size: .67rem; }
+.pet-appointment-content { display: grid; gap: .5rem; padding: .6rem; }
+.pet-video { position: relative; overflow: hidden; aspect-ratio: 1.95; border-radius: 8px; background: #d2ded5; }
+.pet-video img { object-fit: cover; object-position: center 46%; }
+.pet-chat { display: grid; align-content: start; gap: .3rem; }
+.pet-chat p { max-width: 95%; padding: .35rem .48rem; border-radius: 7px; font-size: .71rem; overflow-wrap: anywhere; }
+.pet-chat strong { display: block; margin-bottom: .08rem; font-weight: 800; }
+.pet-chat-incoming { justify-self: start; background: #eaf0ec; }
+.pet-chat-outgoing { justify-self: end; background: #d5efe2; }
+.pet-chat-form { display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: .3rem; }
+.pet-chat-form input {
+  width: 100%; min-width: 0; min-height: 44px; padding-inline: .45rem; border: 1px solid #bdcfc6;
+  border-radius: 7px; color: var(--pet-ink); background: #fff; font-size: .8rem;
+}
+.pet-chat-form button { display: grid; place-items: center; min-height: 44px; border-radius: 7px; background: var(--pet-teal); color: #fff; cursor: pointer; }
+.pet-chat-form button:disabled { opacity: .53; cursor: not-allowed; }
+
+@container (max-width: 605px) {
+  .pet-phones { grid-template-columns: minmax(0, 305px); }
+  .pet-demo[data-screen="home"] .pet-phone--consultation, .pet-demo[data-screen="consultation"] .pet-phone--home { display: none; }
+  .pet-screen-selector {
+    display: flex; width: max-content; max-width: 100%; gap: .16rem; margin: 0 auto .65rem; padding: .2rem;
+    border: 1px solid #c9d9cd; border-radius: 8px; background: var(--pet-paper);
+  }
+  .pet-screen-selector button { min-height: 44px; padding-inline: .63rem; border-radius: 6px; font-size: .79rem; font-weight: 800; cursor: pointer; }
+  .pet-screen-selector button[aria-pressed="true"] { background: var(--pet-teal); color: #fff; }
+  .pet-chat-form input { font-size: 1rem; }
+}

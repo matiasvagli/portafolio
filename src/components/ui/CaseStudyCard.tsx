@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, ChevronDown, FileText, Images, Layers } from "lucide-react";
 import type { CaseStudy } from "@/data/case-studies";
+import DevicePreview from "@/components/commercial/DevicePreview";
 import ImageLightbox from "./ImageLightbox";
 
 export default function CaseStudyCard({ study }: { study: CaseStudy }) {
@@ -34,9 +35,11 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
           </div>
         </div>
         {cover ? (
-          <button type="button" className="case-cover" onClick={() => setLightboxIndex(0)} aria-label={`Ampliar captura de ${study.shortTitle}`}>
-            <Image src={cover} alt="" width={1400} height={780} sizes="(min-width: 900px) 48vw, 92vw" />
-          </button>
+          <DevicePreview address={study.shortTitle}>
+            <button type="button" className="case-cover" onClick={() => setLightboxIndex(0)} aria-label={`Ampliar captura de ${study.shortTitle}`}>
+              <Image src={cover} alt="" width={1400} height={780} sizes="(min-width: 900px) 48vw, 92vw" />
+            </button>
+          </DevicePreview>
         ) : (
           <div className="case-architecture-preview">
             <p><Layers size={19} aria-hidden="true" /> Arquitectura del sistema</p>

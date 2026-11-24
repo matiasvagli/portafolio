@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteDescription, siteTitle, siteUrl } from "@/data/site";
 import "./globals.css";
 import "@/components/commercial/commercial.css";
 import "@/components/commercial/catalog.css";
@@ -12,11 +13,13 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Matías Vagliviello | Webs, sistemas y agentes de IA para comercios",
+    default: siteTitle,
     template: "%s | Matías Vagliviello",
   },
-  description: "Desarrollo webs, tiendas y sistemas a medida. Integro ventas por WhatsApp, agentes de IA, stock y facturación electrónica con ARCA.",
+  description: siteDescription,
+  openGraph: { siteName: "MatiasVagliDev", locale: "es_AR", type: "website", title: siteTitle, description: siteDescription },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

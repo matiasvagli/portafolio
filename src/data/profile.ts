@@ -19,7 +19,7 @@ export const profileData = {
   name: "Matías Vagliviello",
   handle: "@matiasvagli",
   age: 42,
-  role: "Backend Developer & Systems Architect",
+  role: "Desarrollador Full Stack",
   tagline: "Entiendo problemas reales de negocio y los convierto en arquitectura de software que no se cae.",
   location: "Buenos Aires, Argentina",
   email: "vaglimatias@gmail.com",

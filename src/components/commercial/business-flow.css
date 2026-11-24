@@ -1,0 +1,30 @@
+.business-board { display: grid; min-width: 0; border: 1px solid #c9d4ef; border-radius: 14px; overflow: hidden; background: #fffefa; }
+.business-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem; padding: .55rem; background: #e8edfb; }
+.business-controls button {
+  display: flex; align-items: center; gap: .4rem; min-width: 0; min-height: 44px; padding: .35rem .45rem;
+  border: 1px solid transparent; border-radius: 7px; font-size: .77rem; font-weight: 800; text-align: left; cursor: pointer; line-height: 1.25;
+}
+.business-controls button > svg { flex: none; color: var(--blue); }
+.business-controls button:is(:hover,[aria-pressed="true"]) { color: var(--blue); border-color: #a9b9ec; background: white; }
+.business-flow { display: grid; align-content: center; gap: .85rem; padding: clamp(.7rem, 2.5vw, 1.65rem); background: radial-gradient(circle, #c7d2ef99 1px, transparent 1px) 0 0 / 15px 15px, #f8faff; }
+.business-flow-label { font-size: .7rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--blue); }
+.business-flow-route { display: grid; gap: .45rem; animation: commercial-enter .28s ease-out both; }
+.business-flow-route li { display: flex; align-items: center; gap: .45rem; padding: .7rem; border: 1px solid #c8d2ed; background: white; border-radius: 7px; min-width: 0; }
+.business-flow-route li:first-child { display: grid; align-content: center; }
+.business-flow-route li:nth-child(2) { color: #fff; background: var(--blue); border-color: var(--blue); }
+.business-flow-route li svg { flex: none; }
+.business-flow-route :is(small,strong) { display: block; }
+.business-flow-route small { font-size: .67rem; font-weight: 800; }
+.business-flow-route strong { font-size: .81rem; line-height: 1.35; }
+.business-flow > p:last-child { color: #3f4e74; font-size: .87rem; line-height: 1.6; background: #f8faff; }
+.business-benefits { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin-top: 1rem; }
+.business-benefits li { display: inline-flex; align-items: center; gap: .45rem; color: #343f59; font-size: .78rem; font-weight: 800; }
+.business-benefits li::before { content: ""; width: 6px; height: 6px; border-radius: 100%; background: var(--blue); }
+
+@media (min-width: 650px) {
+  .business-controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .business-flow-route { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 950px) {
+  .business-board { grid-template-columns: minmax(255px, .8fr) minmax(0, 1.4fr); }
+}

@@ -3,6 +3,7 @@ import ContactCallout from "@/components/commercial/ContactCallout";
 import LiveWork from "@/components/commercial/LiveWork";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/landings" },
   title: "Webs en vivo",
   description: "Recorré Coruja Casas Serranas, Zona Urbana Publicidad y Futboliga, tres webs desarrolladas por Matías Vagliviello.",
 };

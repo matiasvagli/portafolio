@@ -7,5 +7,5 @@ export function whatsappDraft(message: string) {
 }
 
 export const firstContactUrl = whatsappDraft(
-  "Hola, Matías. Vi tu web y quiero contarte cómo vendo hoy y qué me gustaría mejorar.",
+  "Hola, Matías. Vi tu web y quiero contarte qué tengo en mente.",
 );

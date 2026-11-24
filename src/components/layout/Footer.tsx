@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="commercial-shell commercial-footer-inner">
         <Link href="/" className="commercial-signature">
           <Image className="signature-logo" src="/comercial/logo-mv.webp" width={192} height={114} alt="" />
-          <span><strong>{profileData.name}</strong><span>Desarrollador Full Stack</span></span>
+          <span><strong>{profileData.name}</strong><span>Desarrollo digital a medida</span></span>
         </Link>
         <nav aria-label="Más sobre mi trabajo">
           <Link href="/casos">Casos de estudio</Link>

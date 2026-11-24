@@ -8,7 +8,8 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { profileData } from "@/data/profile";
 
 const sections = [
-  { label: "Qué puedo hacer", anchor: "soluciones" },
+  { label: "Soluciones", anchor: "soluciones" },
+  { label: "Agentes de IA", anchor: "agentes" },
   { label: "Trabajos", anchor: "trabajos" },
   { label: "Contacto", anchor: "contacto" },
 ];
@@ -37,7 +38,7 @@ export default function Navbar() {
       <div className="commercial-shell commercial-nav-inner">
         <Link href="/" className="commercial-signature" onClick={() => setMobileOpen(false)}>
           <Image className="signature-logo" src="/comercial/logo-mv.webp" width={192} height={114} alt="" />
-          <span><strong>{profileData.name}</strong><span>Desarrollador Full Stack</span></span>
+          <span><strong>{profileData.name}</strong><span>Desarrollo digital a medida</span></span>
         </Link>
         <button ref={menuButton} type="button" aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={mobileOpen} aria-controls="commercial-menu" onClick={() => setMobileOpen(value => !value)} className="commercial-menu-toggle">
           {mobileOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}

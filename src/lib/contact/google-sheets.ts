@@ -32,6 +32,10 @@ export async function saveContactToSheets(
   config: NonNullable<ReturnType<typeof getGoogleSheetsConfig>>,
   fetcher: typeof fetch = fetch,
 ) {
+  const context = [
+    submission.asunto && `Asunto: ${submission.asunto}`,
+    submission.etapa && `Etapa: ${submission.etapa}`,
+  ].filter(Boolean).join("\n");
   const response = await fetcher(config.url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -42,9 +46,7 @@ export async function saveContactToSheets(
       email: submission.email,
       empresa: submission.empresa ?? "",
       tipoProyecto: submission.tipoProyecto,
-      mensaje: submission.asunto
-        ? `Asunto: ${submission.asunto}\n\n${submission.mensaje}`
-        : submission.mensaje,
+      mensaje: context ? `${context}\n\n${submission.mensaje}` : submission.mensaje,
     }),
     signal: AbortSignal.timeout(12000),
     redirect: "follow",

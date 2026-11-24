@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import { ContactDeliveryError, getGoogleSheetsConfig, saveContactToSheets } from "../src/lib/contact/google-sheets.ts";
-import { commercialMessageLimit, contactSubmissionSchema, contactTopics } from "../src/schemas/contact.schema.ts";
+import { commercialMessageLimit, contactGoals, contactStages, contactSubmissionSchema, contactTopics } from "../src/schemas/contact.schema.ts";
 
 const submission = { nombre: "Prueba", email: "test@example.com", empresa: "", tipoProyecto: "erp-medida", mensaje: "Una consulta válida para probar el almacenamiento.", submissionId: "23e89021-2b1f-4b18-a7cb-c847fca6c781", website: "" };
 const config = { url: "https://script.google.com/macros/s/local-test/exec" };
@@ -234,4 +234,18 @@ test("several new leads go in one email to the configured owner", () => {
   assert.match(harness.messages[0].body, /lead@example\.com/);
   assert.equal(harness.messages[0].replyTo, undefined);
   assert(harness.rows.slice(1).every(row => Number.isFinite(Date.parse(row[7]))));
+});
+
+test("an optional project stage reaches the existing spreadsheet without changing its format", async () => {
+  const harness = receiverHarness();
+  const asunto = contactGoals[7];
+  const etapa = contactStages[2];
+  const mensaje = "a".repeat(commercialMessageLimit);
+  const entry = { ...submission, asunto, etapa, mensaje };
+  assert.equal(contactSubmissionSchema.safeParse({ ...entry, etapa: "invalid" }).success, false);
+  assert.equal(contactSubmissionSchema.safeParse({ ...entry, asunto: undefined, mensaje: mensaje + "a" }).success, false);
+  await saveContactToSheets(contactSubmissionSchema.parse(entry), config, async (_url, options) => {
+    return Response.json(harness.receive(JSON.parse(options.body)));
+  });
+  assert.equal(harness.rows[1][6], `'Asunto: ${asunto}\nEtapa: ${etapa}\n\n${mensaje}`);
 });

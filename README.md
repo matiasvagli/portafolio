@@ -1,10 +1,10 @@
 # Portafolio — Matías Vagliviello (`@matiasvagli`)
 
-Portafolio freelance para pequeños comercios. La portada incluye un catálogo
-de muestra que abre una conversación simulada, siete soluciones interactivas,
-tres webs publicadas y acceso a WhatsApp y al formulario. Las muestras funcionan
-en el navegador. Las fichas de trabajos reutilizan las capturas y los destinos de
-`productionLandings`.
+Portafolio de desarrollo digital a medida, desde ideas que recién empiezan hasta
+negocios que quieren conectar su operación. La portada combina proyectos reales,
+recorridos por necesidad, un simulador de agentes de IA y ejemplos interactivos
+en navegador y celular. Las simulaciones usan datos ficticios y corren localmente
+en el navegador.
 
 El pie enlaza al CV, los casos de estudio, el stack y el trabajo open source.
 

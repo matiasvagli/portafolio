@@ -1,0 +1,118 @@
+.collections-demo {
+  --collections-ink: #1c2943;
+  --collections-muted: #4d5b70;
+  --collections-line: #dce3ee;
+  --collections-accent: #294886;
+  --collections-pad: clamp(.65rem, 2.3cqw, 1.35rem);
+  color: var(--collections-ink);
+  background: #eef2f8;
+  font-variant-numeric: tabular-nums;
+}
+.collections-header {
+  display: flex; align-items: center; justify-content: space-between; gap: .7rem;
+  padding: .7rem var(--collections-pad); background: #202e4b; color: #fff;
+}
+.collections-header span { display: inline-flex; align-items: center; gap: .5rem; font-size: .95rem; font-weight: 800; }
+.collections-header small { color: #dae4f6; font-size: .72rem; text-align: right; }
+.collections-body { display: grid; gap: .78rem; padding: var(--collections-pad); }
+.collections-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .38rem .75rem; }
+.collections-heading h4 { font-size: clamp(1.22rem, 3.4cqw, 1.9rem); line-height: 1.12; font-weight: 800; letter-spacing: -.05em; }
+.collections-heading p { display: flex; align-items: center; gap: .42rem; color: var(--collections-muted); font-size: .74rem; }
+.collections-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; }
+.collections-metric {
+  min-width: 0; padding: .7rem; border: 1px solid var(--collections-line); border-top: 3px solid var(--metric-color);
+  border-radius: 8px; background: #fff;
+}
+.collections-metric[data-color="sales"] { --metric-color: #4668a5; }
+.collections-metric[data-color="paid"] { --metric-color: #35745c; }
+.collections-metric[data-color="pending"] { --metric-color: #9c6a2d; }
+.collections-metric[data-color="overdue"] { --metric-color: #a24e54; }
+.collections-metric dt { display: flex; align-items: center; gap: .36rem; font-weight: 800; }
+.collections-metric dt svg { flex: none; color: var(--metric-color); }
+.collections-metric strong { display: block; margin-top: .25rem; font-size: clamp(.88rem, 2.6cqw, 1.4rem); line-height: 1.16; font-weight: 800; letter-spacing: -.047em; white-space: nowrap; }
+.collections-metric small { display: block; margin-top: .25rem; color: var(--collections-muted); font-size: .68rem; line-height: 1.35; }
+.collections-progress {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .54rem;
+  padding: .56rem .7rem; border: 1px solid var(--collections-line); border-radius: 8px; background: #fff;
+  color: var(--collections-muted); font-size: .72rem; font-weight: 750;
+}
+.collections-progress strong { color: #245943; white-space: nowrap; }
+.collections-progress progress { appearance: none; width: 100%; height: .46rem; overflow: hidden; border: 0; border-radius: 4px; color: #35745c; background: #e3e9e5; }
+.collections-progress progress::-webkit-progress-bar { background: #e3e9e5; }
+.collections-progress progress::-webkit-progress-value { background: #35745c; }
+.collections-progress progress::-moz-progress-bar { background: #35745c; }
+.collections-ledger { min-width: 0; border: 1px solid var(--collections-line); border-radius: 9px; background: #fff; }
+.collections-toolbar { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: .55rem; padding: .7rem; }
+.collections-toolbar h5 { font-size: .98rem; font-weight: 800; letter-spacing: -.025em; }
+.collections-filters { display: grid; grid-template-columns: minmax(0, 14rem) minmax(6rem, auto); align-items: end; gap: .45rem; }
+.collections-filters label, .collections-payment label { display: grid; min-width: 0; gap: .18rem; color: var(--collections-muted); font-size: .74rem; font-weight: 800; }
+.collections-search > span:last-child { position: relative; }
+.collections-search svg { position: absolute; top: 50%; left: .5rem; transform: translateY(-50%); pointer-events: none; }
+.collections-search input { padding-inline: 1.75rem .35rem; width: 100%; }
+.collections-filters :is(input, select), .collections-payment select {
+  min-width: 0; min-height: 44px; border: 1px solid #c4d0e3; border-radius: 6px;
+  background: #fbfcff; color: var(--collections-ink); font-size: .78rem; font-weight: 600;
+}
+.collections-filters select, .collections-payment select { padding-inline: .42rem; }
+.collections-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .76rem; }
+.collections-table :is(th, td) { padding: .35rem clamp(.37rem, 1.25cqw, .75rem); border-top: 1px solid var(--collections-line); vertical-align: middle; }
+.collections-table thead th { padding-block: .42rem; color: var(--collections-muted); background: #f4f7fb; font-size: .69rem; font-weight: 800; }
+.collections-table tbody tr:hover { background: #f7faff; }
+.collections-table tbody th { font-weight: 800; }
+.collections-table small { display: block; margin-top: .12rem; color: var(--collections-muted); font-size: .69rem; font-weight: 550; line-height: 1.35; overflow-wrap: anywhere; }
+.collections-table :is(.collections-amount, .collections-balance) { text-align: right; white-space: nowrap; }
+.collections-table .collections-balance { font-weight: 800; }
+.collections-table .collections-due { white-space: nowrap; }
+.collections-table .collections-action { width: 1%; padding: .2rem .25rem; text-align: center; }
+.collections-action button, .collections-pagination button, .collections-dialog header button {
+  display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 6px;
+  color: var(--collections-accent); cursor: pointer;
+}
+.collections-action button:hover, .collections-pagination button:not(:disabled):hover, .collections-dialog header button:hover { background: #e7eefb; }
+.collections-pagination button:disabled { opacity: .42; cursor: not-allowed; }
+.collections-status {
+  display: inline-flex; align-items: center; gap: .26rem; border-radius: 15px; padding: .17rem .4rem;
+  color: #354d7b; background: #e8effc; font-size: .65rem; font-weight: 800; line-height: 1.25; white-space: nowrap;
+}
+.collections-status::before { content: ""; width: .29rem; height: .29rem; border-radius: 50%; background: currentColor; }
+.collections-status[data-status="paid"] { color: #255e46; background: #dff1e6; }
+.collections-status[data-status="partial"] { color: #694810; background: #f8edcf; }
+.collections-status[data-status="overdue"] { color: #842d36; background: #f9e5e7; }
+.collections-status-mobile { display: none; }
+.collections-empty { padding: .95rem .7rem; color: var(--collections-muted); }
+.collections-pagination { display: flex; align-items: center; justify-content: space-between; gap: .45rem; min-height: 48px; padding: .1rem .48rem .1rem .7rem; border-top: 1px solid var(--collections-line); color: var(--collections-muted); }
+.collections-pagination > div { display: flex; align-items: center; gap: .12rem; }
+.collections-dialog {
+  position: fixed; inset: 0; margin: auto; width: min(calc(100% - 1.5rem), 29rem); max-height: calc(100dvh - 1.5rem);
+  overflow: auto; padding: 1rem; border: 1px solid var(--collections-line); border-radius: 13px;
+  background: #fbfcff; color: var(--collections-ink); box-shadow: 0 20px 65px #172a4c44;
+}
+.collections-dialog::backdrop { background: #121f38a6; }
+.collections-dialog header, .collections-dialog-customer { display: flex; align-items: center; justify-content: space-between; gap: .55rem; }
+.collections-dialog h5 { font-size: 1.13rem; font-weight: 800; line-height: 1.2; }
+.collections-dialog-customer { margin-top: .38rem; padding: .6rem; border-radius: 7px; background: #eaf0fa; }
+.collections-dialog-customer strong { font-size: .92rem; font-weight: 800; }
+.collections-dialog-customer p { color: var(--collections-muted); }
+.collections-detail { display: grid; margin-block: .6rem; }
+.collections-detail > div { display: flex; justify-content: space-between; gap: .4rem; padding-block: .38rem; border-bottom: 1px solid var(--collections-line); }
+.collections-detail dt { color: var(--collections-muted); }
+.collections-detail dd { text-align: right; font-weight: 750; }
+.collections-detail > div:last-child { font-weight: 800; }
+.collections-payment { display: grid; gap: .48rem; }
+.collections-payment select { font-size: 1rem; }
+.collections-payment .preview-primary { background: var(--collections-accent); }
+.collections-payment .preview-primary:hover { background: #203a6b; }
+
+@container (max-width: 720px) {
+  .collections-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .collections-table .collections-amount { display: none; }
+}
+@container (max-width: 520px) {
+  .collections-toolbar { display: grid; }
+  .collections-filters { grid-template-columns: minmax(0, 1fr) minmax(85px, auto); }
+  .collections-filters :is(input, select) { font-size: 1rem; }
+  .collections-search input::placeholder { font-size: .72rem; }
+  .collections-table :is(.collections-due, .collections-status-cell) { display: none; }
+  .collections-table .collections-status-mobile { display: inline-flex; margin-top: .25rem; }
+  .collections-table :is(th, td) { padding-block: .47rem; }
+}

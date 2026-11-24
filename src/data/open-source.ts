@@ -132,6 +132,7 @@ RAG_VECTOR_STORE=pgvector
   },
 ];
 
+// Usar capturas de la portada inicial de cada sitio en las tarjetas del portfolio.
 export const productionLandings: ProductionLanding[] = [
   {
     name: "Coruja Casas Serranas",

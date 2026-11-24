@@ -12,7 +12,9 @@
 .contact-callout .commercial-button--plain { color: white; border-color: #98acef; }
 .contact-callout .commercial-button--plain:hover { background: #ffffff26; }
 .contact-portrait { display: grid; justify-items: center; gap: .6rem; font-size: .78rem; font-weight: 800; }
-.contact-portrait img { aspect-ratio: 1; width: clamp(110px, 13vw, 180px); height: auto; object-fit: cover; object-position: center 24%; border-radius: 50%; border: 3px solid #dee6ff; }
+.contact-portrait figcaption { display: grid; gap: .2rem; text-align: center; }
+.contact-portrait figcaption small { font-size: .7rem; font-weight: 500; }
+.contact-portrait img { aspect-ratio: 1; width: clamp(144px, 17vw, 240px); height: auto; object-fit: cover; object-position: center 24%; border-radius: 50%; border: 3px solid #dee6ff; }
 
 .contact-page { display: grid; align-items: start; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); gap: clamp(1.5rem, 6vw, 5rem); padding-block: clamp(2.8rem, 7vw, 6.5rem); }
 .contact-intro .commercial-title { text-wrap: pretty; }
@@ -53,7 +55,7 @@
   .contact-page { grid-template-columns: minmax(0, 1fr); }
   .contact-callout-inner { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
   .contact-portrait { display: flex; align-items: center; }
-  .contact-portrait img { width: 50px; border-width: 2px; }
+  .contact-portrait img { width: 66px; border-width: 2px; }
 }
 
 @media (max-width: 460px) {

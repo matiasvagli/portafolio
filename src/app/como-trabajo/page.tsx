@@ -3,6 +3,7 @@ import ContactCallout from "@/components/commercial/ContactCallout";
 import EngineeringSection from "@/components/sections/EngineeringSection";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/como-trabajo" },
   title: "Cómo trabajo",
   description: "Desde la primera charla hasta poner el sistema en marcha. Conocé cómo trabajo y las tecnologías que uso.",
 };
