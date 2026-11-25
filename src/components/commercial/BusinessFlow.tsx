@@ -25,7 +25,7 @@ export default function BusinessFlow() {
       <header className="studio-heading">
         <p className="studio-kicker">Optimización de negocios</p>
         <h2 className="commercial-title" id="business-title">Tu negocio puede funcionar muchísimo mejor.</h2>
-        <p>Conectá las herramientas que necesitás para que los datos y las tareas circulen entre áreas. Elegí un área para ver un ejemplo.</p>
+        <p>Conectá las herramientas que necesitás para que los datos y las tareas circulen entre áreas.<span className="business-example-invite"> Elegí un área para ver un ejemplo.</span></p>
       </header>
       <div className="business-board">
         <div className="business-controls" role="group" aria-label="Áreas conectadas del negocio">
@@ -35,6 +35,11 @@ export default function BusinessFlow() {
             </button>
           ))}
         </div>
+        <ul className="business-area-list" role="list" aria-label="Áreas conectadas del negocio">
+          {areas.map(({ name, Icon }) => (
+            <li key={name}><Icon size={16} aria-hidden="true" /><span>{name}</span></li>
+          ))}
+        </ul>
         <div className="business-flow" id="business-flow" aria-live="polite">
           <p className="business-flow-label">Flujo de ejemplo</p>
           <ol key={area.name} className="business-flow-route">

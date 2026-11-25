@@ -62,7 +62,7 @@ export default function SolutionsSection() {
   }
 
   return (
-    <section id="soluciones" tabIndex={-1} className="solutions-band" aria-labelledby="solutions-title">
+    <section className="solutions-band" aria-labelledby="solutions-title">
       <div className="commercial-shell">
         <div className="solutions-heading">
           <h2 className="commercial-title" id="solutions-title">¿Qué te gustaría lograr?</h2>

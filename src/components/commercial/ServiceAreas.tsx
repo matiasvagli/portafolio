@@ -1,4 +1,7 @@
-import { ArrowUpRight, Check, Compass, Layers3, RefreshCw, Workflow } from "lucide-react";
+"use client";
+
+import { useRef, useState, type UIEvent } from "react";
+import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Compass, Layers3, RefreshCw, Workflow } from "lucide-react";
 
 const stages = [
   {
@@ -36,6 +39,22 @@ const stages = [
 ];
 
 export default function ServiceAreas() {
+  const routeRef = useRef<HTMLOListElement>(null);
+  const [activeStage, setActiveStage] = useState(0);
+
+  function syncActiveStage({ currentTarget }: UIEvent<HTMLOListElement>) {
+    const nextStage = currentTarget.children.item(1);
+    const stepWidth = nextStage instanceof HTMLElement ? nextStage.offsetLeft : 0;
+    const index = stepWidth ? Math.round(currentTarget.scrollLeft / stepWidth) : 0;
+    setActiveStage(Math.max(0, Math.min(index, stages.length - 1)));
+  }
+
+  function moveStage(step: number) {
+    const route = routeRef.current;
+    const stage = route?.children.item(activeStage + step);
+    if (stage instanceof HTMLElement) route?.scrollTo({ left: stage.offsetLeft });
+  }
+
   return (
     <section id="servicios" className="commercial-shell studio-section development-section" aria-labelledby="service-areas-title">
       <header className="development-heading">
@@ -44,7 +63,7 @@ export default function ServiceAreas() {
         <p className="development-intro">Un recorrido claro para avanzar por etapas: empezamos por lo que necesitás hoy y sumamos nuevas capacidades cuando aportan valor.</p>
       </header>
 
-      <ol className="development-route">
+      <ol ref={routeRef} id="development-stages" className="development-route" role="list" onScroll={syncActiveStage}>
         {stages.map(({ number, label, title, detail, outcome, Icon }) => (
           <li key={number} className="development-stage">
             <div className="development-stage-top">
@@ -58,6 +77,15 @@ export default function ServiceAreas() {
           </li>
         ))}
       </ol>
+      <div className="development-route-controls" role="group" aria-label="Navegación de las etapas">
+        <button type="button" aria-label="Etapa anterior" aria-controls="development-stages" aria-disabled={activeStage === 0} onClick={() => moveStage(-1)}>
+          <ChevronLeft size={18} aria-hidden="true" />
+        </button>
+        <span aria-live="polite">Etapa {activeStage + 1} de {stages.length}</span>
+        <button type="button" aria-label="Etapa siguiente" aria-controls="development-stages" aria-disabled={activeStage === stages.length - 1} onClick={() => moveStage(1)}>
+          <ChevronRight size={18} aria-hidden="true" />
+        </button>
+      </div>
 
       <div className="development-next-step">
         <p><strong>Tu proyecto puede empezar por una sola etapa.</strong><span>Vemos juntos cuál tiene más sentido para vos.</span></p>

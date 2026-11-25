@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +10,7 @@ import { profileData } from "@/data/profile";
 const sections = [
   { label: "Soluciones", anchor: "soluciones" },
   { label: "Agentes de IA", anchor: "agentes" },
-  { label: "Trabajos", anchor: "trabajos" },
+  { label: "Trabajos", anchor: "trabajos", mobileHref: "/landings" },
   { label: "Contacto", anchor: "contacto" },
 ];
 
@@ -44,10 +44,13 @@ export default function Navbar() {
           {mobileOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
         </button>
         <nav aria-label="Navegación principal" id="commercial-menu" data-open={mobileOpen}>
-          {sections.map(({ label, anchor }) => (
-            <SectionLink href={pathname === "/" ? `#${anchor}` : `/#${anchor}`} key={anchor} onClick={() => setMobileOpen(false)} className={anchor === "contacto" ? "commercial-nav-contact" : undefined}>
-              {label}{anchor === "contacto" && <ArrowUpRight size={17} aria-hidden="true" />}
-            </SectionLink>
+          {sections.map(({ label, anchor, mobileHref }) => (
+            <Fragment key={anchor}>
+              <SectionLink href={pathname === "/" ? `#${anchor}` : `/#${anchor}`} onClick={() => setMobileOpen(false)} className={mobileHref ? "commercial-nav-work-anchor" : anchor === "contacto" ? "commercial-nav-contact" : undefined}>
+                {label}{anchor === "contacto" && <ArrowUpRight size={17} aria-hidden="true" />}
+              </SectionLink>
+              {mobileHref && <Link href={mobileHref} className="commercial-nav-work-page" onClick={() => setMobileOpen(false)}>{label}</Link>}
+            </Fragment>
           ))}
         </nav>
       </div>

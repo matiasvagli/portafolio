@@ -16,8 +16,10 @@ export default function HomePage() {
   return (
     <div className="commercial-page studio-home">
       <CommercialHero />
-      <SolutionsSection />
-      <ServiceAreas />
+      <div id="soluciones" tabIndex={-1}>
+        <SolutionsSection />
+        <ServiceAreas />
+      </div>
       <AgentTeamSection />
       <BusinessFlow />
       <LiveWork />

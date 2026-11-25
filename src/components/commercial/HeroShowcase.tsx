@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { AppWindow, ArrowUpRight, Globe2, PanelsTopLeft, Sparkles, Workflow } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { AppWindow, ArrowUpRight, ChevronLeft, ChevronRight, Globe2, PanelsTopLeft, Pause, Play, Sparkles, Workflow } from "lucide-react";
 import DevicePreview from "./DevicePreview";
 
 const previews = [
@@ -36,16 +36,81 @@ const previews = [
   },
 ] as const;
 
+const rotationDelay = 6000;
+
 export default function HeroShowcase() {
   const [selected, setSelected] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const showcaseRef = useRef<HTMLDivElement>(null);
   const project = previews[selected];
+  const RotationIcon = isPlaying ? Pause : Play;
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setIsPlaying(!reducedMotion.matches);
+    updatePreference();
+    reducedMotion.addEventListener("change", updatePreference);
+    return () => reducedMotion.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    const showcase = showcaseRef.current;
+    if (!showcase || !isPlaying) return;
+
+    const mobile = window.matchMedia("(width < 768px)");
+    let inView = false;
+    let timer: number | undefined;
+
+    function updateRotation() {
+      window.clearInterval(timer);
+      if (mobile.matches && inView && !document.hidden) {
+        timer = window.setInterval(() => setSelected((index) => (index + 1) % previews.length), rotationDelay);
+      }
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.intersectionRatio >= 0.5;
+      updateRotation();
+    }, { threshold: 0.5 });
+    observer.observe(showcase);
+    mobile.addEventListener("change", updateRotation);
+    document.addEventListener("visibilitychange", updateRotation);
+
+    return () => {
+      window.clearInterval(timer);
+      observer.disconnect();
+      mobile.removeEventListener("change", updateRotation);
+      document.removeEventListener("visibilitychange", updateRotation);
+    };
+  }, [isPlaying]);
+
+  function movePreview(step: number) {
+    setIsPlaying(false);
+    setSelected((index) => (index + step + previews.length) % previews.length);
+  }
 
   return (
-    <div className="hero-showcase" aria-label="Agentes y trabajos destacados">
+    <div ref={showcaseRef} className="hero-showcase" aria-label="Agentes y trabajos destacados">
       <div className="showcase-picker" role="group" aria-label="Elegí una vista">
         {previews.map(({ type, Icon }, index) => (
           <button key={type} type="button" aria-pressed={index === selected} aria-controls="showcase-project" onClick={() => setSelected(index)}><Icon size={16} aria-hidden="true" />{type}</button>
         ))}
+      </div>
+      <div className="showcase-mobile-bar">
+        <span className="showcase-category" aria-live={isPlaying ? "off" : "polite"}>
+          <project.Icon size={14} aria-hidden="true" />{project.type}
+        </span>
+        <div className="showcase-controls" role="group" aria-label="Controles de proyectos destacados">
+          <button type="button" aria-label={isPlaying ? "Pausar rotación" : "Reproducir rotación"} aria-controls="showcase-project" onClick={() => setIsPlaying(!isPlaying)}>
+            <RotationIcon size={16} aria-hidden="true" />
+          </button>
+          <button type="button" aria-label="Proyecto anterior" aria-controls="showcase-project" onClick={() => movePreview(-1)}>
+            <ChevronLeft size={18} aria-hidden="true" />
+          </button>
+          <button type="button" aria-label="Proyecto siguiente" aria-controls="showcase-project" onClick={() => movePreview(1)}>
+            <ChevronRight size={18} aria-hidden="true" />
+          </button>
+        </div>
       </div>
       <div id="showcase-project">
         {"mockup" in project ? (
@@ -69,7 +134,7 @@ export default function HeroShowcase() {
         <div className="showcase-caption">
           <div><strong>{project.title}</strong><p>{project.detail}</p></div>
           {"href" in project && (
-            <a href={project.href} target={"external" in project ? "_blank" : undefined} rel={"external" in project ? "noopener noreferrer" : undefined} aria-label={`Ver proyecto ${project.title}`}><ArrowUpRight size={20} aria-hidden="true" /></a>
+            <a href={project.href} target={"external" in project ? "_blank" : undefined} rel={"external" in project ? "noopener noreferrer" : undefined} aria-label={`Ver proyecto ${project.title}`} onFocus={() => setIsPlaying(false)}><ArrowUpRight size={20} aria-hidden="true" /></a>
           )}
         </div>
       </div>

@@ -1,5 +1,6 @@
 .business-board { display: grid; min-width: 0; border: 1px solid #c9d4ef; border-radius: 14px; overflow: hidden; background: #fffefa; }
 .business-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem; padding: .55rem; background: #e8edfb; }
+.business-area-list { display: none; }
 .business-controls button {
   display: flex; align-items: center; gap: .4rem; min-width: 0; min-height: 44px; padding: .35rem .45rem;
   border: 1px solid transparent; border-radius: 7px; font-size: .77rem; font-weight: 800; text-align: left; cursor: pointer; line-height: 1.25;
@@ -27,4 +28,14 @@
 }
 @media (min-width: 950px) {
   .business-board { grid-template-columns: minmax(255px, .8fr) minmax(0, 1.4fr); }
+}
+@media (width < 768px) {
+  .business-controls, .business-flow, .business-benefits, .business-example-invite { display: none; }
+  .business-area-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem .4rem;
+    margin: 0; padding: .8rem .55rem; background: #e8edfb;
+  }
+  .business-area-list li { display: flex; align-items: center; gap: .3rem; min-height: 27px; font-size: .75rem; font-weight: 800; line-height: 1.25; }
+  .business-area-list svg { flex: none; color: var(--blue); }
+  .business-area-list span { min-width: 0; overflow-wrap: anywhere; }
 }
